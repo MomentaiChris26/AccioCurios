@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # pages/index is the home page.
+  root "pages#index"
+  get 'pages/index'
 end
