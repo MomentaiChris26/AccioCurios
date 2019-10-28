@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  posted_date: 2019-10-28
+  sold: 1
+  description: MyText
+  condition: one
+  category: one
+
+two:
+  title: MyString
+  posted_date: 2019-10-28
+  sold: 1
+  description: MyText
+  condition: two
+  category: two
