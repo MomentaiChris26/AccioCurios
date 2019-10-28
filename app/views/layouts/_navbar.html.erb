@@ -10,7 +10,7 @@
         <%= link_to 'Browse Listings', listings_path, class:"nav-link" %>
       </li>
       <li class="nav-item">
-      <%= link_to 'Create Listing', root_path, class:"nav-link" %>
+      <%= link_to 'Create Listing', listings_new_path, class:"nav-link" %>
       </li>
     </ul>
     <% if user_signed_in? # If the user is signed then the sign out button appears %>

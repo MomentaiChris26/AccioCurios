@@ -3,6 +3,7 @@
   <div class="row">
         <% @listings.each do |listing| %>
         <div class="card" style="width: 12rem;">
+        <%= (image_tag listing.picture, class:"card-img-top", size: "200") if listing.picture.attached? %>
           <div class="card-body">
             <h5 class="card-title"><%= listing.title %></h5>
             <h5 class="price-tag">$<%= listing.price %></h5>
