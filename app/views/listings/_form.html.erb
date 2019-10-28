@@ -1,0 +1,36 @@
+<%= form_with scope: listing, local: true do |form| %>
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+ 
+  <p>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+  </p>
+
+  <p>
+    <%= form.label :price %>
+    <%= form.number_field :price %>
+  </p>
+
+  <p>
+    <%= form.label :posted_date %><br>
+    <%= form.date_field :posted_date %>
+  </p>
+
+  <p>
+  <%= form.label :condition_id %>
+  <%= form.collection_select(:condition_id, Condition.all, :id, :status, :prompt => true) %>
+  </p>
+
+  <p>
+    <%= form.label :category_id %>
+    <%= form.collection_select(:category_id, :id, Category.all, :id, :name, :prompt => true) %>
+  </p>
+
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

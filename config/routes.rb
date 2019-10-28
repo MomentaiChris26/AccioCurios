@@ -6,8 +6,13 @@ Rails.application.routes.draw do
   end
   devise_for :users
   # pages/index is the home page.
-  root "pages#index"
-  get 'pages/index'
+  root "pages#index", to: 'pages/index'
 
+  # Routing for listings pages
+  get 'listings', to: 'listings#index', as: "listings"
+
+  # CRUD for Listings
+  get 'listings/new', to: 'listings#new'
+  post 'listings/new', to: 'listings#create'
 
 end

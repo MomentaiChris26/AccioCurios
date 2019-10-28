@@ -54,3 +54,4 @@ end
 seed_admin
 seed_test_user
 seed_conditions
+seed_categories
