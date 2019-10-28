@@ -1,5 +1,9 @@
 class ListingsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :show, :destory]
+  before_action :set_listing, only: [:show]
+  before_action :set_user_listing, only: [:edit, :update, :destroy]
+
+
   # Page to show all listings. No login required for this page.
   def index
     @listings = Listing.all
@@ -28,7 +32,17 @@ class ListingsController < ApplicationController
   end
   
   def update
+    if @listing.update(listing_params)
+      flash[:notice] = "Listing Sucessfully Updated"
+      redirect_to listings_path
+    else
+      render 'edit'
+    end
+  end
 
+  def destroy
+    @listing.destroy
+    redirect_to listings_path
   end
 
   
@@ -36,14 +50,14 @@ class ListingsController < ApplicationController
   private 
 
   def set_user_listing
-    if current_user.role?
+    if current_user.admin?
       set_listing
     elsif @listing = current_user.listings.find_by_id(params[:id])
       if @listing == nil
         redirect_to listings_path
       else
         if @listing.price = nil
-          @listing.price = 0
+          @listing.price = 0.00
         end
       end
     end

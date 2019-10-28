@@ -1,0 +1,21 @@
+<div class="container">
+
+<% if flash[:notice] %>
+  <div class="notice alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+
+  <div class="card">
+    
+    <h2 class="card-header"><%= @listing.title %></h2>
+    <div class="card-body">
+      <%= (image_tag @listing.picture, size:"250x250") if @listing.picture.attached? %>
+      <h5 class="card-title">$<%= @listing.price %></h5>
+      <p class="card-text"><%= @listing.condition.status %></p>
+      <p class="card-text"><%= @listing.category.name %></p>
+      <p class="card-text"><%= @listing.description %></p>
+      <%= (link_to "edit", edit_listing_path(@listing), class:"btn btn-info") if (current_user.admin == true or current_user.id == @listing.user_id)  %>
+      <%= (link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger") if (current_user.admin == true or current_user.id == @listing.user_id) %>
+      <%= link_to 'Back', listings_path, class:"btn btn-success" %>
+    </div>
+  </div>
+</div>

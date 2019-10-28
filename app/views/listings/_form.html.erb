@@ -1,4 +1,4 @@
-<%= form_with scope: listing, local: true do |form| %>
+<%= form_with(model: listing, local: true) do |form| %>
   <p>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
