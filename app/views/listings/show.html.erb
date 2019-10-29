@@ -16,6 +16,17 @@
       <%= (link_to "edit", edit_listing_path(@listing), class:"btn btn-info") if (current_user.admin == true or current_user.id == @listing.user_id)  %>
       <%= (link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger") if (current_user.admin == true or current_user.id == @listing.user_id) %>
       <%= link_to 'Back', listings_path, class:"btn btn-success" %>
+
+      <% if user_signed_in? && current_user.id != @listing.user_id %>
+        <%= link_to "Send Inquiry", conversations_path(sender_id: current_user.id, recipient_id: @listing.user.id), method: 'post', class:"btn btn-info" %>
+      <% elsif user_signed_in? && current_user.id == @listing.user_id  %>
+      <% else %>
+      <%= link_to "Sign up to message #{@listing.user.username}", new_user_registration_path %>
+      <% end %>
     </div>
   </div>
+
+
+
+
 </div>

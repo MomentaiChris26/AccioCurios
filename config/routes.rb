@@ -20,4 +20,10 @@ Rails.application.routes.draw do
   get "/listings/:id/edit", to: "listings#edit", as: "edit_listing"
   
 
+
+  # Routes for messaging and conversations
+  resources :conversations do
+    resources :messages
+  end
+  
 end

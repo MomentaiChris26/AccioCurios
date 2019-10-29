@@ -7,29 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-# Creates an admin account for testing purposes
-def seed_admin
-  User.create(
-    id: 1,
-    username: "admin",
-    email: "admin@test.com",
-    password: '123456',
-    password_confirmation: '123456',
-    admin: true,
-  )
-end
-
-# Creates a user account for testing purposes
-def seed_test_user
-  User.create(
-    id: 2,
-    username: "user",
-    email: "test@test.com",
-    password: '123456',
-    password_confirmation: '123456',
-    admin: false,
-  )
-end
 
 # Creates template for product conditions to be used
 def seed_conditions
@@ -51,7 +28,5 @@ end
 
 
 # Runs methods above 
-seed_admin
-seed_test_user
 seed_conditions
 seed_categories
