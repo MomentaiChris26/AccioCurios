@@ -1,11 +1,9 @@
+
 <div class="container">
+<% if current_user.admin? %>
   <h1>Admin Database</h1>
-  
-
-
 <h2 >Conditions</h2>
 <ul class="list-group">
-
 <% list_condition.each do |condition| %>
   <li class="list-group-item">  
     <h6 class="card-title"><%= condition.status %></h6>
@@ -13,21 +11,12 @@
     <%= link_to 'Delete', condition_path(condition) , method: :delete, data: { confirm: 'Are you sure?'} %>
   </li>
 <% end %>
-
 </ul>
-
 <br>
-
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCenter">
     Add New Listing Condition
   </button>
-
-
 </div>
-
-
-
-
 <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -39,9 +28,7 @@
       </div>
     <%= form_with(model: @condition, url: conditions_path ) do |form| %>
       <div class="modal-body">
-
         <%= form.label :status %>: <%= form.text_field :status %>
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -50,6 +37,10 @@
     <% end %>
     </div>
   </div>
+
+<% else %>
+  You are not permitted to view this dashboard
+<% end %>
 </div>
 
 

@@ -1,7 +1,7 @@
 require 'common_stuff'
 class ListingsController < ApplicationController
   include CommonStuff
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :show, :destory]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :show, :destory, :admin_dashboard]
   before_action :set_listing, only: [:show]
   before_action :set_user_listing, only: [:edit, :update, :destroy]
 
