@@ -45,8 +45,12 @@ class ListingsController < ApplicationController
     redirect_to listings_path
   end
 
-  
+  def admin_dashboard
+    @conditions = Condition.all
+    @categories = Category.all
+  end
 
+  
   private 
 
   def set_user_listing
