@@ -1,8 +1,9 @@
+require 'common_stuff'
 class ListingsController < ApplicationController
+  include CommonStuff
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :show, :destory]
   before_action :set_listing, only: [:show]
   before_action :set_user_listing, only: [:edit, :update, :destroy]
-
 
   # Page to show all listings. No login required for this page.
   def index
@@ -45,11 +46,11 @@ class ListingsController < ApplicationController
     redirect_to listings_path
   end
 
+  
   def admin_dashboard
-    @conditions = Condition.all
-    @categories = Category.all
+    helpers.list_condition
+    @condition = Condition.new
   end
-
   
   private 
 

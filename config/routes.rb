@@ -18,10 +18,11 @@ Rails.application.routes.draw do
   patch "/listings/:id", to: "listings#update"
   delete "/listings/:id", to: "listings#destroy"
   get "/listings/:id/edit", to: "listings#edit", as: "edit_listing"
-  
-
   get "/admin_dashboard", to: 'listings#admin_dashboard', as: "admin"
 
+
+  # CRUD for Conditions
+  resources :conditions
 
   # Routes for messaging and conversations
   resources :conversations do

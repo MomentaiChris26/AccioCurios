@@ -1,0 +1,10 @@
+<div class="container">
+  <% @conditions.each do |condition| %>
+  <div class="card" style="width: 10rem;">
+    <div class="card-body">
+      <h6 class="card-title"><%= condition.status %></h6>
+      <%= link_to 'Delete', condition_path(condition) , method: :delete, data: { confirm: 'Are you sure?'} %>
+    </div>
+  </div>
+  <% end %>
+</div>        
