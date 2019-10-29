@@ -4,13 +4,9 @@ class ConditionsController < ApplicationController
     @conditions = Condition.all
   end
 
-  def show
-
-  end
 
   def create
     @condition = Condition.create(conditions_params)
-    
     if @condition.errors.any?
       render 'condition'
     else

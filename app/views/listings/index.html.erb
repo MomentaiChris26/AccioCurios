@@ -1,6 +1,8 @@
 <div class="container">
   <h1>All Listings</h1>
 
+  <%= render 'layouts/partials/searchbar' %>
+
   <div class="row">
         <% @listings.each do |listing| %>
         <div class="card" style="width: 12rem;">

@@ -8,6 +8,8 @@ class ListingsController < ApplicationController
   # Page to show all listings. No login required for this page.
   def index
     @listings = Listing.all
+    @q = Listing.ransack(params[:q])
+    @listings = @q.result(distinct: true)
   end
   
   def show
