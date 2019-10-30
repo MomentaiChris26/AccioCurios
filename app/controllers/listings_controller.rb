@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   load_and_authorize_resource
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :show, :destory, :admin_dashboard]
+  # before_action :authenticate_user!, only: [:new, :create, :edit, :update, :show, :destory, :admin_dashboard]
   before_action :set_listing, only: [:show]
 
   # Page to show all listings. No login required for this page.

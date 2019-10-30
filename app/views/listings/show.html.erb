@@ -13,7 +13,7 @@
       <p class="card-text"><%= @listing.condition.status %></p>
       <p class="card-text"><%= @listing.category.name %></p>
       <p class="card-text"><%= @listing.description %></p>
-      <%= link_to "edit", edit_listing_path(@listing), class:"btn btn-info"  %>
+      <%= (link_to "edit", edit_listing_path(@listing), class:"btn btn-info") if (current_user.admin == true or current_user.id == @listing.user_id)  %>
       <%= (link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger") if (current_user.admin == true or current_user.id == @listing.user_id) %>
       <%= link_to 'Back', listings_path, class:"btn btn-success" %>
 
@@ -36,10 +36,9 @@
 <% end %>
 
 
-  <h2>Add a comment:</h2>
+  <h3>Add a comment:</h3>
 <%= form_with(model: [ @listing, @listing.comments.build ], local: true) do |form| %>
   <p>
-    <%= form.label :body %><br>
     <%= form.text_area :body %>
   </p>
   <p>
