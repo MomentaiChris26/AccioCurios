@@ -1,43 +1,61 @@
-<%= form_with(model: listing, local: true) do |form| %>
-  <p>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-  </p>
+<div class='form-group'>
+  <%= form_with(model: listing, local: true) do |form| %>
+    <p>
+      <%= form.label :title %><br>
+      <%= form.text_field :title, class:"form-control", placeholder: 'Enter your post title' %>
+    </p>
+  
+    <p>
+      <%= form.label :picture %> <%= form.file_field :picture, accept:'image/png,image/gif,image/jpeg,image/jpg' %>
+    </p>
+  
+    <p>
+      <%= form.label :description %><br>
+      <%= form.text_area :description, class:"form-control", placeholder: 'Enter a description for your post' %>
+    </p>
 
-  <p>
-    <%= form.label :picture %> <%= form.file_field :picture, accept:'image/png,image/gif,image/jpeg,image/jpg' %>
-  </p>
- 
-  <p>
-    <%= form.label :description %><br>
-    <%= form.text_area :description %>
-  </p>
+    <p>
+      <%= form.label :price %>
+      <%= form.number_field :price, class:"form-control" %>
+    </p>
 
-  <p>
-    <%= form.label :price %>
-    <%= form.number_field :price %>
-  </p>
+    <p>
+      <%= form.label :posted_date %><br>
+      <%= form.date_field :posted_date, :value => Time.now.strftime('%Y-%m-%d'), class:"form-control" %>
+    </p>
 
-  <p>
-    <%= form.label :posted_date %><br>
-    <%= form.date_field :posted_date %>
-  </p>
+    <p>
+    What is the condition of the collectible?
+    <%= form.collection_select(:condition_id, Condition.all, :id, :status, :prompt => true) %>
+    </p>
 
-  <p>
-  <%= form.label :condition_id %>
-  <%= form.collection_select(:condition_id, Condition.all, :id, :status, :prompt => true) %>
-  </p>
+    <p>
+    Select a Category
+    <%= form.collection_select(:category_id, Category.all, :id, :name, :prompt => true ) %>
+    </p>
+    
+    
+    <p>
+    <button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">
+    (Optional) Or Add a new Category
+    </button>
+    </p>
+    <div class="collapse" id="collapseCategory">
+    <div class="card card-body">
+        <p>
+      <%= form.fields_for :category, Category.new do |ff| %>
+        <%= ff.text_field :name, class:"form-control", placeholder:"Add a new Category",  include_blank: true %>
+      <% end %>
+    </p>
+    </div>
+    </div>
 
-  <p>
-    <%= form.fields_for :category, Category.new do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-    <% end %>
-  </p>
+    <p>
+      <%= form.submit class:"btn btn-info" %>
+    </p>
 
+    <%= link_to 'Return to listings', listings_path %>
+  <% end %>
+</div>
 
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
 
