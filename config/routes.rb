@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   # Routing for listings pages
   get 'listings', to: 'listings#index', as: "listings"
   # CRUD for Listings
-  resources :listings
+  resources :listings do
+    resources :comments
+  end
   get "/admin_dashboard", to: 'listings#admin_dashboard', as: "admin"
   # CRUD for Conditions
   resources :conditions

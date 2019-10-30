@@ -4,7 +4,6 @@ class ConditionsController < ApplicationController
     @conditions = Condition.all
   end
 
-
   def create
     @condition = Condition.create(conditions_params)
     if @condition.errors.any?
@@ -12,10 +11,6 @@ class ConditionsController < ApplicationController
     else
       redirect_to admin_path
     end
-  end
-
-  def edit
-
   end
 
   def destroy

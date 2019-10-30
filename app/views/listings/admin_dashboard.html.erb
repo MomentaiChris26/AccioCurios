@@ -7,7 +7,6 @@
 <% list_condition.each do |condition| %>
   <li class="list-group-item">  
     <h6 class="card-title"><%= condition.status %></h6>
-    <%= link_to 'Edit', edit_condition_path(condition) %>
     <%= link_to 'Delete', condition_path(condition) , method: :delete, data: { confirm: 'Are you sure?'} %>
   </li>
 <% end %>
