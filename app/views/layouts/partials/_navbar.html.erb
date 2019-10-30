@@ -16,12 +16,10 @@
       </li>
     </ul>
     <% if user_signed_in? # If the user is signed then the sign out button appears %>
-      <% if current_user.admin == true #If user is an admin, presents them with additional menu options  %> 
-        <%= link_to 'Admin Dashboard', admin_path, class:"nav-link" %>
-        <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete , class:"nav-item btn btn-danger" %>
-      <% else %>
-        <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete , class:"nav-item btn btn-danger" %>
-      <% end %>    
+    <% if can? :manage, :all %>
+      <%= link_to 'Admin Dashboard', admin_path, class:"nav-link" %>
+    <% end %>
+            <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete , class:"nav-item btn btn-danger" %> 
     <% else # User is not signed in %>
       <%= link_to 'Sign In', login_path, class:"btn btn-primary" %>
     <% end %>

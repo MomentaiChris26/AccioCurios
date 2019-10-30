@@ -1,9 +1,7 @@
-require 'common_stuff'
 class ListingsController < ApplicationController
-  include CommonStuff
+  load_and_authorize_resource
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :show, :destory, :admin_dashboard]
   before_action :set_listing, only: [:show]
-  before_action :set_user_listing, only: [:edit, :update, :destroy]
 
   # Page to show all listings. No login required for this page.
   def index
@@ -25,8 +23,8 @@ class ListingsController < ApplicationController
     if @listing.errors.any?
       render 'new'
     else
-      flash[:notice] = "Listing Sucessfully Created"
-      redirect_to root_path
+      flash[:alert] = "Listing Sucessfully Created"
+      redirect_to listings_path
     end
   end
 
@@ -36,7 +34,7 @@ class ListingsController < ApplicationController
   
   def update
     if @listing.update(listing_params)
-      flash[:notice] = "Listing Sucessfully Updated"
+      flash[:alert] = "Listing Sucessfully Updated"
       redirect_to listings_path
     else
       render 'edit'
@@ -55,20 +53,6 @@ class ListingsController < ApplicationController
   end
   
   private 
-
-  def set_user_listing
-    if current_user.admin?
-      set_listing
-    elsif @listing = current_user.listings.find_by_id(params[:id])
-      if @listing == nil
-        redirect_to listings_path
-      else
-        if @listing.price = nil
-          @listing.price = 0.00
-        end
-      end
-    end
-  end
 
   def set_listing
     @listing = Listing.find(params[:id])
