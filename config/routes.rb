@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   # CRUD for Conditions
   resources :conditions
 
+  # CRUD for Categories
+  resources :categories, only: [:edit, :update, :show, :destroy]
+
   # Routes for Admin
   get "admin_user", to: 'admin_user#index', as: "admin"
   get 'admin_user/edit/:id', to: 'admin_user#edit', as: 'user'

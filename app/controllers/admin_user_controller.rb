@@ -1,7 +1,7 @@
 class AdminUserController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show, :destroy]
   def index
-    @condition = Condition.new
+    
   end
 
  def edit
@@ -9,6 +9,7 @@ class AdminUserController < ApplicationController
  end
 
  def update
+  # Deletes the password if the password is blank
   params[:user].delete(:password) if params[:user][:password].blank?
   params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
   
