@@ -7,4 +7,8 @@ module AdminUserHelper
     User.all
   end
 
+  def list_all_categories
+    Category.all
+  end
+
 end

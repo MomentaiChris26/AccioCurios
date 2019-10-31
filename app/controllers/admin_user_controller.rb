@@ -1,8 +1,6 @@
 class AdminUserController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show, :destroy]
   def index
-    helpers.list_condition
-    helpers.list_all_users
     @condition = Condition.new
   end
 
@@ -24,7 +22,6 @@ class AdminUserController < ApplicationController
  end
 
   def destroy
-    
     if @user.destroy
       flash[:alert] = "Successfully deleted User."
       redirect_to admin_path
