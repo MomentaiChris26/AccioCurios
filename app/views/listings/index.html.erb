@@ -21,7 +21,10 @@
             <p class="card-text"><%= listing.condition.status %></p>
             <p class="card-text"><%= listing.category.name %></p>
             <p class="card-text"><%= listing.description %></p>
-            <%= link_to 'Details', listing_path(listing), class:"btn btn-primary" %>
+            <% if can? :read, @listing %>
+              <%= link_to 'More Information', listing_path(listing), class:"btn btn-primary" %>
+            <% end %>
+            
       </div>
     </div>
   </div>

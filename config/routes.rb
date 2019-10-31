@@ -18,9 +18,6 @@ Rails.application.routes.draw do
   # CRUD for Conditions
   resources :conditions
 
-  # Routes for messaging and conversations
-  resources :conversations do
-    resources :messages
-  end
+
   
 end

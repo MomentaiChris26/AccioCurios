@@ -5,48 +5,58 @@
 <% end %>
 
   <div class="card">
-    
     <h2 class="card-header"><%= @listing.title %></h2>
     <div class="card-body">
-      <%= (image_tag @listing.picture, size:"250x250") if @listing.picture.attached? %>
+      <%= (image_tag @listing.picture, size:"220x220") if @listing.picture.attached? %>
       <h5 class="card-title">$<%= @listing.price %></h5>
       <p class="card-text"><%= @listing.condition.status %></p>
       <p class="card-text"><%= @listing.category.name %></p>
       <p class="card-text"><%= @listing.description %></p>
-      <%= (link_to "edit", edit_listing_path(@listing), class:"btn btn-info") if (current_user.admin == true or current_user.id == @listing.user_id)  %>
-      <%= (link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger") if (current_user.admin == true or current_user.id == @listing.user_id) %>
-      <%= link_to 'Back', listings_path, class:"btn btn-success" %>
-
-      <% if user_signed_in? && current_user.id != @listing.user_id %>
-        <%= link_to "Send Inquiry", conversations_path(sender_id: current_user.id, recipient_id: @listing.user.id), method: 'post', class:"btn btn-info" %>
-      <% elsif user_signed_in? && current_user.id == @listing.user_id  %>
+      <% if user_signed_in? %>
+        <% if current_user.id != @listing.user_id %>
+          <%= link_to 'Buy Now', root_path %>
+        <% elsif user_signed_in? && current_user.admin == true or  user_signed_in? && current_user.id == @listing.user_id  %>
+          <%= link_to "edit", edit_listing_path(@listing), class:"btn btn-info"%>
+          <%= link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+        <% end %>
       <% else %>
-      <%= link_to "Sign up to message #{@listing.user.username}", new_user_registration_path %>
+        <%= link_to "Sign up To Buy", new_user_registration_path, class:"btn btn-info" %>
       <% end %>
+      <%= link_to 'Back', listings_path %>
     </div>
   </div>
+<br>
+<div class="container">
+    <h3>Send an inquiry</h3>
+<% if user_signed_in? %>
+  <% @listing.comments.each do |comment| %>
+    <p>
+      <strong><%= comment.user.username %></strong>:
+      <%= comment.body %>
+    </p>
+  <% end %>
+  <%= form_with(model: [ @listing, @listing.comments.build ], local: true) do |form| %>
+    <p>
+      <%= form.text_area :body, class:"form-control" %>
+    </p>
+    <p></p>
+    <% if user_signed_in? && current_user.id != @listing.user_id %>
+      <%= form.submit "Send Inquiry" %>
+    <% else %>
+      <%= form.submit "Reply to Inquiry" %>
+    <% end %>
+    </p>
+  <% end %>
+<% else %>
+          <%= link_to "Sign up send an inquiry", new_user_registration_path, class:"btn btn-info" %>
 
-  <h2>Comments</h2>
-<% @listing.comments.each do |comment| %>
- 
-  <p>
-    <strong><%= comment.user.username %></strong>:
-    <%= comment.body %>
-  </p>
 <% end %>
-
-
-  <h3>Add a comment:</h3>
-<%= form_with(model: [ @listing, @listing.comments.build ], local: true) do |form| %>
-  <p>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
-
-
-
 
 </div>
+
+</div>
+
+<!-- Unused Code -->
+<!--  
+
+-->
