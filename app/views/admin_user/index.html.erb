@@ -2,6 +2,20 @@
   <h1>Admin Database</h1>
   <!-- Gives the ability for admin to add a new condition to the database -->
   <% if can? :manage, :all %>
+    <h2>Manage Users</h2>
+    <% list_all_users.each do |user| %>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+    <h6 class="card-subtitle mb-2 text-muted">User ID: <%= user.id %></h6>
+    <p class="card-text">Username: <%= user.username %></p>
+    <%= link_to 'Edit User', user_path(user) %>
+    <%= link_to 'Delete User', user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+  </div>
+
+    <% end %>
+
+
     <h2 >Add/Remove Conditions for Listing</h2>
       <!-- Displays all listing conditions currently in the database -->
     <ul class="list-group">

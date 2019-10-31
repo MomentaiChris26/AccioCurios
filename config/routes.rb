@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  
+
   devise_for :users
   # Giving sign in page its own path
   devise_scope :user do
@@ -14,9 +16,19 @@ Rails.application.routes.draw do
   resources :listings do
     resources :comments
   end
-  get "/admin_dashboard", to: 'listings#admin_dashboard', as: "admin"
+
   # CRUD for Conditions
   resources :conditions
+
+  # Routes for Admin
+  get "admin_user", to: 'admin_user#index', as: "admin"
+  get 'admin_user/edit/:id', to: 'admin_user#edit', as: 'user'
+  put 'admin_user/edit/:id', to: 'admin_user#update'
+  patch 'admin_user/edit/:id', to: 'admin_user#update'
+  delete 'admin_user/edit/:id', to: 'admin_user#destroy'
+
+
+
 
 
   

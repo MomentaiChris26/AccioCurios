@@ -4,7 +4,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, :all
+    can :read, Listing
 
     if user.present?  # additional permissions for logged in users (they can read their own posts)
       can [:new, :create, :edit, :update, :show, :destroy], Listing, user_id: user.id

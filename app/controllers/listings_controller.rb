@@ -1,9 +1,7 @@
 class ListingsController < ApplicationController
   load_and_authorize_resource
-  # before_action :authenticate_user!, only: [:new, :create, :edit, :update, :show, :destory, :admin_dashboard]
   before_action :set_listing, only: [:show]
 
-  # Page to show all listings. No login required for this page.
   def index
     @listings = Listing.where(sold: 0)
     @q = Listing.ransack(params[:q])
@@ -48,8 +46,7 @@ class ListingsController < ApplicationController
 
   
   def admin_dashboard
-    helpers.list_condition
-    @condition = Condition.new
+
   end
   
   private 

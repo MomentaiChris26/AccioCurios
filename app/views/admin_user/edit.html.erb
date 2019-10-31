@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>User Details</h1>
+
+<div class='form-group'>
+  <%= form_with(model: @user) do |form| %>
+    <p>
+      <%= form.label :username %><br>
+      <%= form.text_field :username, class:"form-control", placeholder: 'Enter your post title' %>
+    </p>
+
+    <p>
+      <%= form.label :email %><br>
+      <%= form.text_field :email, class:"form-control", placeholder: 'Enter your post title' %>
+    </p>
+
+    <p>
+      <%= form.label :admin %>
+      <%= form.check_box :admin %>
+    </p>
+
+    <p>
+      <%= form.submit class:"btn btn-info" %>
+    </p>
+
+
+  <% end %>
+
+</div>
+
+<%= link_to 'Delete User', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' } %>
