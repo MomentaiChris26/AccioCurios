@@ -13,11 +13,12 @@
       <p class="card-text"><%= @listing.category.name %></p>
       <p class="card-text"><%= @listing.description %></p>
       <% if user_signed_in? %>
-        <% if current_user.id != @listing.user_id %>
-          <%= link_to 'Buy Now', root_path %>
-        <% elsif user_signed_in? && current_user.admin == true or  user_signed_in? && current_user.id == @listing.user_id  %>
-          <%= link_to "edit", edit_listing_path(@listing), class:"btn btn-info"%>
+        <% if current_user.admin == true or current_user.id == @listing.user_id  %>
+          <%= link_to "Edit", edit_listing_path(@listing), class:"btn btn-info"%>
           <%= link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+          <%= link_to 'Buy Now', root_path, class:"btn btn-success" %>
+        <% elsif current_user.id != @listing.user_id %>
+          <%= link_to 'Buy Now', root_path %>
         <% end %>
       <% else %>
         <%= link_to "Sign up To Buy", new_user_registration_path, class:"btn btn-info" %>
@@ -48,15 +49,7 @@
     </p>
   <% end %>
 <% else %>
-          <%= link_to "Sign up send an inquiry", new_user_registration_path, class:"btn btn-info" %>
-
+  <%= link_to "Sign up send an inquiry", new_user_registration_path, class:"btn btn-info" %>
 <% end %>
-
 </div>
-
 </div>
-
-<!-- Unused Code -->
-<!--  
-
--->

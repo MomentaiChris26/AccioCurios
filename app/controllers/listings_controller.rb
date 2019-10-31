@@ -5,7 +5,7 @@ class ListingsController < ApplicationController
 
   # Page to show all listings. No login required for this page.
   def index
-    @listings = Listing.all
+    @listings = Listing.where(sold: 0)
     @q = Listing.ransack(params[:q])
     @listings = @q.result(distinct: true)
   end

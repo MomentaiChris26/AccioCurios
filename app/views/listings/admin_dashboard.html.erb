@@ -1,23 +1,22 @@
 <div class="container">
-    <h1>Admin Database</h1>
-  <% if current_user.admin? %>
-
-
-  <h2 >Add/Remove Conditions for Listing</h2>
-  <!-- Displays all listing conditions currently in the database -->
-  <ul class="list-group">
-    <% list_condition.each do |condition| %>
-      <li class="list-group-item">  
-        <h6 class="card-title"><%= condition.status %></h6>
-        <%= link_to 'Delete', condition_path(condition) , method: :delete, data: { confirm: 'Are you sure?'} %>
-      </li>
-    <% end %>
-  </ul><br>
-
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCenter">Add New Listing Condition</button>
-
+  <h1>Admin Database</h1>
+  <!-- Gives the ability for admin to add a new condition to the database -->
+  <% if can? :manage, :all %>
+    <h2 >Add/Remove Conditions for Listing</h2>
+      <!-- Displays all listing conditions currently in the database -->
+    <ul class="list-group">
+      <% list_condition.each do |condition| %>
+        <li class="list-group-item">  
+          <h6 class="card-title"><%= condition.status %></h6>
+          <%= link_to 'Delete', condition_path(condition) , method: :delete, data: { confirm: 'Are you sure?'} %>
+        </li>
+      <% end %>
+    </ul><br>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCenter">Add New Listing Condition</button>
+  <% end %>
 </div>
 
+<!-- Bootstrap Modal for Adding new listing conditions -->
 <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -38,9 +37,6 @@
     <% end %>
     </div>
   </div>
-<% else %>
-  You must be an administrator to access the admin dashboard
-<% end %>
 
 </div>
 
