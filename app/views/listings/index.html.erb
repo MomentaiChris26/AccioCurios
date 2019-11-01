@@ -1,37 +1,39 @@
-<div class="container-fluid">
+<div class="container">
+<h1>All Current Listings</h1>
+
+<div>
+  <%= render 'layouts/partials/searchbar' %>
+</div>
+
+<br>
+
   <div class="row">
-    <div class="col homepage-banner">
-    <div class="container">
-    <br><br>
-      <%= render 'layouts/partials/searchbar' %>
-    </div>
-    </div>
-    <div class="col-9">
-    <div class="container">
-      <% @listings.each do |listing| %>
-  <div class="card mb-3" style="max-width: 800px;">
-  <div class="row no-gutters">
-    <div class="col-md-4">
-      <%= (image_tag listing.picture, class:"card-img", size: "200") if listing.picture.attached? %>
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title"><%= listing.title %></h5>
-                    <h5 class="price-tag">$<%= listing.price %></h5>
-            <p class="card-text"><%= listing.condition.status %></p>
+    <% @listings.each do |listing| %>
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="card h-100">
+          <%= (image_tag listing.picture, class:"card-img", size: "200") if listing.picture.attached? %>
+        <div class="card-body">
+          <h4 class="card-title">
+            <%= listing.title %>
+          </h4>
+          <h5 class="card-title">Asking Price: $<%= listing.price  %></h5>
+            <p class="card-text">Condition: <%= listing.condition.status %></p>
             <p class="card-text"><%= listing.category.name %></p>
             <p class="card-text"><%= listing.description %></p>
-              <%= link_to 'More Information', listing_path(listing), class:"btn btn-primary" %>
-            
+            <%= link_to 'More Information', listing_path(listing), class:"btn btn-primary" %>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-      <% end %>
+    <% end %>
+
     </div>
-    </div>
-  </div>
+
+
+
+
+
 </div>
+
 
 
 
