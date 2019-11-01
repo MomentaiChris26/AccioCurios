@@ -1,24 +1,37 @@
-# README
+# AccioCurios
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Introduction
+The problem to be solved is to have a market place for people to buy and sell their collectibles.
 
-Things you may want to cover:
+This problem needs to be solved, as there isn't a dedicated marketplace for a users to buy or sell their collectibles. 
 
-* Ruby version
+Add URL HERE ONCE DEPLOYED
 
-* System dependencies
+## Features
+* Listings Page
+* User authentication
+* Admin Dashboard
+* User Dashboard
 
-* Configuration
+## Sitemap
+![AccioCurios Sitemap](./resources/sitemap.jpg)
 
-* Database creation
+## Wireframe
 
-* Database initialization
+## Gems Used
 
-* How to run the test suite
+### Devise
+User authentication and authorization
 
-* Services (job queues, cache servers, search engines, etc.)
+### Cancancan
+User authorization
 
-* Deployment instructions
+### Ransack
+Search database
 
-* ...
+### Stripe
+Payment system
+
+
+
+
