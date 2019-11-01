@@ -9,36 +9,43 @@
     <h6 class="card-text mb-2 text-muted"><%= user.username %></h6>
     <p class="card-text">User ID: <%= user.id %></p>
     <%= link_to 'Edit User', user_path(user) %>
-    <%= link_to 'Delete User', user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
   </div>
     <% end %>
 <br>
 
   <div class="listing-conditions">
-    <h2 >Add/Remove Conditions for Listing</h2>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalListing">Add New Listing Condition</button>
+    <h2 >Manage Conditions for Listing</h2><br>
+    <!-- Allows admin to add a new condition -->
+    <h5>Add New Condition</h5>
+    <%= render 'admin_user/partials/conditionsform' %>
     <br><br>
-        <!-- Displays all listing conditions currently in the database -->
-      <ul class="list-group">
-        <% list_condition.each do |condition| %>
-          <li class="list-group-item">  
-            <h6 class="card-title"><%= condition.status %></h6>
-            <%= link_to 'Delete', condition_path(condition) , method: :delete, data: { confirm: 'Are you sure?'} %>
-          </li>
+
+  <!-- Displays all listing conditions currently in the database -->
+  <h5>Manage Current Conditions</h5>
+  <ul class="list-group">
+    <% list_condition.each do |condition| %>
+      <li class="list-group-item">  
+      <h6 class="card-title"><%= condition.status %></h6>
+    <%= link_to 'Delete', condition_path(condition) , method: :delete, data: { confirm: 'Are you sure?'} %>
+  </li>
         <% end %>
       </ul><br>
     <% end %>
   </div><br>
 
   <div class="listing-categories">
-  <h2>Add/Edit/Remove Categories for Listings</h2>
+  <h2>Manage Categories for Listings</h2><br>
+
+  <h5>Add New Category</h5>
+<%= render 'admin_user/partials/categoriesform' %><br>
+
+<h5>Manage Current Categories</h5>
     <ul class="list-group">
      <% list_all_categories.each do |category| %>
       <li class="list-group-item">
         <h6 class="card-title"><%= category.name %></h6>
         <%= link_to 'Delete', category_path(category), method: :delete, data: { confirm: "Are you sure?"} %>
-        <!-- Add delete funcionality for categories once CRUD is implemented -->
       </li> 
      <% end %>
     </ul>
@@ -47,19 +54,21 @@
 </div>
 
 
-<!-- Bootstrap Modal for Adding new listing conditions -->
-<div class="modal fade" id="ModalListing" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+
+
+  <!-- Bootstrap Modal for Adding new listing conditions -->
+<div class="modal fade" id="modalCategories" tabindex="-1" role="dialog" aria-labelledby="modalCategoriesTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="ModalCenterTitle">Add A New Condition</h5>
+        <h5 class="modal-title" id="modalCategoriesTitle">Add A New Category</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-    <%= form_with(model: new_condition, url: conditions_path ) do |form| %>
+    <%= form_with(model: new_category, url: conditions_path ) do |form| %>
       <div class="modal-body">
-        <%= form.label :status %>: <%= form.text_field :status %>
+        <%= form.label :name %>: <%= form.text_field :name %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -68,6 +77,7 @@
     <% end %>
     </div>
   </div>
+
 
 </div>
 

@@ -1,0 +1,5 @@
+    <%= form_with(model: new_condition, url: conditions_path ) do |form| %>
+        <%= form.label :status %>: <%= form.text_field :status %>
+        <%= form.submit class:"btn btn-success" %>
+
+    <% end %>

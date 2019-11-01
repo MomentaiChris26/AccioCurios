@@ -11,6 +11,10 @@ module AdminUserHelper
     User.all
   end
 
+
+  def new_category
+    Category.new
+  end
   def list_all_categories
     Category.all
   end

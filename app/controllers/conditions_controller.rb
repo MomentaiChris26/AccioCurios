@@ -9,6 +9,7 @@ class ConditionsController < ApplicationController
     if @condition.errors.any?
       render 'condition'
     else
+      flash[:alert] = "Successfully Added New Condition."
       redirect_to admin_path
     end
   end
