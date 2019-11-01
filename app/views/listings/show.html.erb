@@ -12,17 +12,20 @@
       <p class="card-text"><%= @listing.condition.status %></p>
       <p class="card-text"><%= @listing.category.name %></p>
       <p class="card-text"><%= @listing.description %></p>
-      <% if user_signed_in? %>
-        <% if current_user.admin == true or current_user.id == @listing.user_id  %>
-          <%= link_to "Edit", edit_listing_path(@listing), class:"btn btn-info"%>
-          <%= link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
-        <% elsif current_user.id != @listing.user_id %>
-        <button data-stripe="payment">Buy Now <%= number_to_currency(@listing.price) %></button>
-        <% end %>
-      <% else %>
-        <%= link_to "Sign up To Buy", new_user_registration_path, class:"btn btn-info" %>
-      <% end %>
-      <%= link_to 'Back', listings_path %>
+
+  <div class="check-privilages">
+    <% if can? :manage, Listing %>
+    <% if current_user.admin == true or current_user.id == @listing.user_id  %>
+      <%= link_to "Edit", edit_listing_path(@listing), class:"btn btn-info"%>
+      <%= link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+    <% elsif current_user.id != @listing.user_id %>
+    <button data-stripe="payment" class="btn btn-success">Buy Now</button>
+    <% end %>
+  <% else %>
+    <%= link_to "Sign up To Buy", new_user_registration_path, class:"btn btn-info" %>
+  <% end %>
+  <%= link_to 'Back', listings_path %>
+  </div>
     </div>
   </div>
 <br>
