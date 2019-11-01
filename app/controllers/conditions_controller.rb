@@ -1,5 +1,7 @@
 class ConditionsController < ApplicationController
+  authorize_resource :class => false
   before_action :set_condition, only: [:edit, :update, :show, :destroy]
+  
   def index
     @conditions = Condition.all
   end

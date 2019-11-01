@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
+  authorize_resource :class => false
   before_action :set_category, only: [:edit, :update, :show, :destroy] 
-
 
   def create
     @category = Category.create(category_params)

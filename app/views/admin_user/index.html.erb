@@ -1,36 +1,34 @@
 <div class="container">
   <h1>Admin Database</h1>
   <!-- Gives the ability for admin to add a new condition to the database -->
-  <% if can? :manage, :all %>
     <h2>Manage Users</h2>
-    <% list_all_users.each do |user| %>
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-    <h6 class="card-text mb-2 text-muted"><%= user.username %></h6>
-    <p class="card-text">User ID: <%= user.id %></p>
-    <%= link_to 'Edit User', user_path(user) %>
-  </div>
-  </div>
+  <% list_all_users.each do |user| %>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h6 class="card-text mb-2 text-muted"><%= user.username %></h6>
+        <p class="card-text">User ID: <%= user.id %></p>
+        <%= link_to 'Edit User', user_path(user) %>
+      </div>
+    </div>
+  <% end %>
+  <br>
 
-<br>
   <div class="listing-conditions">
     <h2 >Manage Conditions for Listing</h2><br>
     <!-- Allows admin to add a new condition -->
     <h5>Add New Condition</h5>
     <%= render 'admin_user/partials/conditionsform' %>
     <br><br>
-
-  <!-- Displays all listing conditions currently in the database -->
-  <h5>Manage Current Conditions</h5>
-  <ul class="list-group">
-    <% list_condition.each do |condition| %>
-      <li class="list-group-item">  
-      <h6 class="card-title"><%= condition.status %></h6>
-    <%= link_to 'Delete', condition_path(condition) , method: :delete, data: { confirm: 'Are you sure?'} %>
-  </li>
-        <% end %>
-      </ul><br>
-    <% end %>
+    <!-- Displays all listing conditions currently in the database -->
+    <h5>Manage Current Conditions</h5>
+      <ul class="list-group">
+      <% list_condition.each do |condition| %>
+        <li class="list-group-item">  
+          <h6 class="card-title"><%= condition.status %></h6>
+          <%= link_to 'Delete', condition_path(condition) , method: :delete, data: { confirm: 'Are you sure?'} %>
+        </li>
+      <% end %>
+      </ul>
   </div><br>
 
   <div class="listing-categories">
@@ -51,35 +49,6 @@
   </div>
 
 </div>
-    <% else %>
-      You are not allowed to see this page
-    <% end %>
-
-
-
-  <!-- Bootstrap Modal for Adding new listing conditions -->
-<div class="modal fade" id="modalCategories" tabindex="-1" role="dialog" aria-labelledby="modalCategoriesTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalCategoriesTitle">Add A New Category</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    <%= form_with(model: new_category, url: conditions_path ) do |form| %>
-      <div class="modal-body">
-        <%= form.label :name %>: <%= form.text_field :name %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <%= form.submit class:"btn btn-success" %>
-      </div>
-    <% end %>
-    </div>
-  </div>
-
-
 </div>
 
 
