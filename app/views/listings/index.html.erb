@@ -2,8 +2,10 @@
 <h1>All Current Listings</h1>
 
 <div>
+  
   <%= render 'layouts/partials/searchbar' %>
 </div>
+
 
 <br>
 
@@ -17,6 +19,7 @@
             <%= listing.title %>
           </h4>
           <h5 class="card-title">Asking Price: $<%= listing.price  %></h5>
+            <p><%= listing.user_id %></p>
             <p class="card-text">Condition: <%= listing.condition.status %></p>
             <p class="card-text"><%= listing.category.name %></p>
             <p class="card-text"><%= listing.description %></p>

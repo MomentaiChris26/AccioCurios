@@ -1,37 +1,17 @@
 class ListingsController < ApplicationController
-  load_and_authorize_resource :except => [:show]
+  load_and_authorize_resource
   before_action :set_listing, only: [:show]
 
   def index
-    @listings = Listing.where(sold: 0)
-    @q = Listing.ransack(params[:q])
+    @listings = Listing.where(sold: 0) && Listing.where.not(user_id: current_user.id)
+    @q = Listing.where(sold: 0) && Listing.ransack(params[:q])
     @listings = @q.result(distinct: true)
   end
   
   def show
   if user_signed_in?
-    session = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: current_user.email,
-      line_items: [{
-          name: @listing.title,
-          description: @listing.description,
-          amount: (@listing.price * 100).to_i,
-          currency: 'aud',
-          quantity: 1,
-      }],
-
-      payment_intent_data: {
-          metadata: {
-              user_id: current_user.id,
-              listing_id: @listing.id
-          }
-      },
-
-      success_url: "#{root_url}payments/success?userId=#{current_user.id}&listingId=#{@listing.id}",
-      cancel_url: "#{root_url}listings"
-      )
-      @session_id = session.id
+    session = helpers.stripe_session
+    @session_id = session.id
     end
   end
 
