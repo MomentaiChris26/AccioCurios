@@ -7,8 +7,8 @@ class Ability
     can :read, Listing
 
     if user.present?  # additional permissions for logged in users (they can read their own posts)
-      can [:new, :create, :edit, :update, :show, :destroy], Listing, user_id: user.id
-
+      can :manage, Listing, user_id: user.id
+      can :create, Comment
       if user.admin?  # additional permissions for administrators
         can :manage, :all
       end

@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :except => [:show]
   before_action :set_listing, only: [:show]
 
   def index
@@ -9,6 +9,7 @@ class ListingsController < ApplicationController
   end
   
   def show
+  if user_signed_in?
     session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       customer_email: current_user.email,
@@ -29,8 +30,9 @@ class ListingsController < ApplicationController
 
       success_url: "#{root_url}payments/success?userId=#{current_user.id}&listingId=#{@listing.id}",
       cancel_url: "#{root_url}listings"
-  )
-  @session_id = session.id
+      )
+      @session_id = session.id
+    end
   end
 
   def new
@@ -65,10 +67,6 @@ class ListingsController < ApplicationController
     redirect_to listings_path
   end
 
-  
-  def admin_dashboard
-
-  end
   
   private 
 
