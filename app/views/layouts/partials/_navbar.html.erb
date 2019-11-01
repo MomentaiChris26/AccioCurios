@@ -11,15 +11,30 @@
       <li class="nav-item">
       <%= link_to 'Create Listing', new_listing_path, class:"nav-link" %>
       </li>
-    </ul>
-    <% if user_signed_in? # If the user is signed then the sign out button appears %>
+
+          <% if user_signed_in? # If the user is signed then the sign out button appears %>
     <% if can? :manage, :all %>
+    
       <%= link_to 'Admin Dashboard', admin_path, class:"nav-link" %>
+    <% else %>
+    <%= link_to 'My Dashboard', root_path %>
     <% end %>
-            <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete , class:"nav-item btn btn-danger" %> 
+      <!-- User account dropdown -->
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-bars"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <%= link_to 'Account Settings', root_path, class:"dropdown-item" %>
+          <div class="dropdown-divider"></div>
+            <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete , class:"dropdown-item" %> 
+        </div>
+      </div>
     <% else # User is not signed in %>
       <%= link_to 'Sign In', login_path, class:"btn btn-primary" %>
     <% end %>
+    </ul>
+
     
     
   </div>
