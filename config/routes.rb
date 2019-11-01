@@ -30,7 +30,8 @@ Rails.application.routes.draw do
   patch 'admin_user/edit/:id', to: 'admin_user#update'
   delete 'admin_user/edit/:id', to: 'admin_user#destroy'
 
-
+  get "/payments/success", to: "payments#success"
+  post "/payments/webhook", to: "payments#webhook"
 
 
 
