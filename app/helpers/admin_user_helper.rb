@@ -1,4 +1,5 @@
 module AdminUserHelper
+
   def list_condition
     Condition.all
   end
@@ -15,6 +16,7 @@ module AdminUserHelper
   def new_category
     Category.new
   end
+
   def list_all_categories
     Category.all
   end
