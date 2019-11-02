@@ -3,7 +3,8 @@ class PaymentsController < ApplicationController
 
   def success
     @listing_id = params["listingId"].to_i
-    @user_id = params["userId"].to_i
+    Listing.find(@listing_id).update(buyer_id: params["userId"].to_i)
+    Listing.find(@listing_id).update(sold: 1)
   end
 
   def webhook
