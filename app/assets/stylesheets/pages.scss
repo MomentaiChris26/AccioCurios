@@ -8,32 +8,32 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-header.masthead {
+section.masthead {
   position: relative;
   padding-top: 8rem;
   padding-bottom: 8rem;
 }
 
-header.masthead .overlay {
+section.masthead .overlay {
   position: absolute;
   background-color: #004E64;
   height: 82vh;
   width: 100%;
-  top: 20px;
+  top: 0;
   left: 0;
   opacity: 100;
 }
 
-header.masthead h1 {
+section.masthead h1 {
   font-size: 2rem;
 }
 
 @media (min-width: 768px) {
-  header.masthead {
+  section.masthead {
     padding-top: 12rem;
     padding-bottom: 12rem;
   }
-  header.masthead h1 {
+  section.masthead h1 {
     font-size: 3rem;
   }
 }

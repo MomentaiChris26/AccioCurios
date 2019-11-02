@@ -1,16 +1,16 @@
 <div class="container">
-
 <% if flash[:notice] %>
   <div class="notice alert alert-success"><%= flash[:notice] %></div>
 <% end %>
-
+  <%= link_to ' << Back To Current Listings', listings_path %>
   <div class="card">
     <h2 class="card-header"><%= @listing.title %></h2>
     <div class="card-body">
       <%= (image_tag @listing.picture, size:"220x220") if @listing.picture.attached? %>
-      <h5 class="card-title">$<%= @listing.price %></h5>
-      <p class="card-text"><%= @listing.condition.status %></p>
-      <p class="card-text"><%= @listing.category.name %></p>
+      <h5 class="card-title">Asking Price $<%= @listing.price %></h5>
+      <p>Posted By: <%= @listing.user.username %> </p>
+      <p class="card-text">Condition: <%= @listing.condition.status %></p>
+      <p class="card-text">Category: <%= @listing.category.name %></p>
       <p class="card-text"><%= @listing.description %></p>
 
   <div class="check-privilages">
@@ -24,7 +24,7 @@
   <% else %>
     <%= link_to "Sign up To Buy", new_user_registration_path, class:"btn btn-info" %>
   <% end %>
-  <%= link_to 'Back', listings_path %>
+  
   </div>
     </div>
   </div>

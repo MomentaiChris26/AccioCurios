@@ -4,4 +4,8 @@ class PagesController < ApplicationController
     @q = helpers.listing_search
   end
 
+  def user_dashboard
+
+  end
+
 end

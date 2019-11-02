@@ -2,27 +2,19 @@
 <h1>All Current Listings</h1>
 
 <div>
-  
   <%= render 'layouts/partials/searchbar' %>
 </div>
-
-
 <br>
-
   <div class="row">
     <% @listings.each do |listing| %>
       <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-        <div class="card h-100">
-          <%= (image_tag listing.picture, class:"card-img", size: "200") if listing.picture.attached? %>
+        <div class="card">
+        <%= listing.picture.attached? ? (image_tag listing.picture, class:"card-img", size: "200") : (image_tag ("placeholderimage"), class:"card-img", size: "200") %>
         <div class="card-body">
-          <h4 class="card-title">
+          <h5 class="card-title">
             <%= listing.title %>
-          </h4>
-          <h5 class="card-title">Asking Price: $<%= listing.price  %></h5>
-            <p><%= listing.user_id %></p>
-            <p class="card-text">Condition: <%= listing.condition.status %></p>
-            <p class="card-text"><%= listing.category.name %></p>
-            <p class="card-text"><%= listing.description %></p>
+          </h5>
+          <p class="card-title">Asking Price: $<%= listing.price %></p>
             <%= link_to 'More Information', listing_path(listing), class:"btn btn-primary" %>
         </div>
       </div>

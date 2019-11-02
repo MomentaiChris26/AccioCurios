@@ -25,11 +25,15 @@ Rails.application.routes.draw do
 
   # Routes for Admin
   get "admin_user", to: 'admin_user#index', as: "admin"
-  get 'admin_user/edit/:id', to: 'admin_user#edit', as: 'user'
+  get 'admin_user/edit/:id', to: 'admin_user#edit'
   put 'admin_user/edit/:id', to: 'admin_user#update'
   patch 'admin_user/edit/:id', to: 'admin_user#update'
   delete 'admin_user/edit/:id', to: 'admin_user#destroy'
 
+  
+  get 'user_dashboard', to: 'pages#user_dashboard', as: 'user'
+
+  # Routes for stripe payment
   get "/payments/success", to: "payments#success"
   post "/payments/webhook", to: "payments#webhook"
 
