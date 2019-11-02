@@ -3,7 +3,6 @@ class ListingsController < ApplicationController
   before_action :set_listing, only: [:show]
 
   def index
-
     @q = helpers.listing_search
     @listings = @q.result(distinct: true)
   end

@@ -1,7 +1,32 @@
 <h1>My Dashboard</h1>
 
-<div class="container">
+
+
+
 <h3>Purchase History</h3>
+
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Posted Date</th>
+        <th scope="col">Title</th>
+        <th scope="col">Price</th>
+
+      </tr>
+    </thead>
+    <tbody>
+    <% @listings.each do |listing| %>
+      <tr>
+        <td><%= listing.posted_date %></td>
+        <td><%= listing.title %></td>
+        <td>$<%= listing.price %></td>
+
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+
   <h3>My Current Listings</h3>
   <h3>Sold Listings</h3>
-</div>

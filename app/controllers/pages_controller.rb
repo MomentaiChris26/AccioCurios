@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def user_dashboard
-
+    @listings = Listing.where(:id == current_user.id)
   end
 
 end
