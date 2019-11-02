@@ -1,6 +1,7 @@
 class AdminUserController < ApplicationController
   authorize_resource :class => false
   before_action :set_user, only: [:edit, :update, :show, :destroy]
+  
   def index
     
   end

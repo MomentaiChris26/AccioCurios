@@ -1,15 +1,8 @@
 <h1>My Dashboard</h1>
 
-
-
-
 <h3>Purchase History</h3>
-
-
-
-
-
+<br>
 <h3>My Current Listings</h3>
-  <%= render partial: "listingtable", locals: { listing_variable: unsold_listings } %>
+  <%= render partial: "listingtable", locals: { listing_variable: unsold_listings } %><br>
 <h3>Sold Listings</h3>
   <%= render partial: "listingtable", locals: { listing_variable: sold_listings } %>
