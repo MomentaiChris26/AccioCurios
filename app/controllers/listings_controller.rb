@@ -3,8 +3,8 @@ class ListingsController < ApplicationController
   before_action :set_listing, only: [:show]
 
   def index
-    @listings = Listing.where(sold: 0) && Listing.where.not(user_id: current_user.id)
-    @q = Listing.where(sold: 0) && Listing.ransack(params[:q])
+
+    @q = helpers.listing_search
     @listings = @q.result(distinct: true)
   end
   

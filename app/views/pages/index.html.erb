@@ -1,17 +1,25 @@
-<div class="container-fluid">
-  <div class="jumbotron jumbotron-fluid homepage-banner">
-  <h1 class="text-center homepage-h1">Buy And Sell Collectibles</h1>
-  <div class="container">
-  <p><%= render 'layouts/partials/searchbar-homepage' %></p>
-    
-  </div>
-  <br><br>
-  <div class="container">
-  <div class="row">
-    <div class="col text-center"><%= link_to "Search all listing", listings_path, class:"btn btn-secondary btn-lg btn-block" %></div>
-    <div class="col text-center"><%= link_to "Add new Listing", new_listing_path, class:"btn btn-secondary btn-lg btn-block" %></div>
-  </div>  
-  </div>
-</div>
-</div>
+  <header class="masthead text-white text-center">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+        <h2 class="alert"><%= alert %></h2> 
+          <h1 class="mb-5">Buy And Sell Collectibles</h1>
+        </div>
+        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+          <div>
+            <%= search_form_for @q , url: listings_path do |f| %>
+            <div class="form-row">
+            <div class="col-12 col-md-9 mb-2 mb-md-0">
+              <%= f.search_field :title_cont,placeholder:"Search for a collectible", class:"form-control form-control-lg" %>
+            </div>
+            <div class="col-12 col-md-3">
+              <%= f.submit class:"btn btn-block btn-lg btn-primary" %>
+            </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </header>
 

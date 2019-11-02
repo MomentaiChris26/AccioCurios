@@ -3,5 +3,4 @@ module PagesHelper
     Listing.ransack(params[:q])
   end
 
-
 end

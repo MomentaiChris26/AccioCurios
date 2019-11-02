@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   
-
   devise_for :users
   # Giving sign in page its own path
   devise_scope :user do
@@ -12,6 +11,7 @@ Rails.application.routes.draw do
 
   # Routing for listings pages
   get 'listings', to: 'listings#index', as: "listings"
+
   # CRUD for Listings
   resources :listings do
     resources :comments
