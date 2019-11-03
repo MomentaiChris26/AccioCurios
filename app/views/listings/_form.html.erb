@@ -1,4 +1,16 @@
 <div class='form-group'>
+ <!-- Error message related to validations -->
+  <% if listing.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
+    <ul>
+    <% listing.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <!-- Form for creating a post -->
   <%= form_with(model: listing, local: true) do |form| %>
     <p>
       <%= form.label :title %><br>

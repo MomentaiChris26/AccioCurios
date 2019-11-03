@@ -18,7 +18,6 @@ module ListingsHelper
           currency: 'aud',
           quantity: 1,
       }],
-
       payment_intent_data: {
           metadata: {
               user_id: current_user.id,
