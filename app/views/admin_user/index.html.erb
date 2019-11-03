@@ -2,15 +2,7 @@
   <h1>Admin Database</h1>
   <!-- Gives the ability for admin to add a new condition to the database -->
     <h2>Manage Users</h2>
-  <% list_all_users.each do |user| %>
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h6 class="card-text mb-2 text-muted"><%= user.username %></h6>
-        <p class="card-text">User ID: <%= user.id %></p>
-        <%= link_to 'Edit User', user_path(user) %>
-      </div>
-    </div>
-  <% end %>
+    <%= render 'admin_user/partials/listusers' %>
   <br>
 
   <div class="listing-conditions">

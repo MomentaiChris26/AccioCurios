@@ -13,7 +13,11 @@ module PagesHelper
   end
 
   def all_listings
-    Listing.where(sold: 0).where.not(user_id: current_user.id)
+    if user_signed_in?
+      Listing.where(sold: 0).where.not(user_id: current_user.id)
+    else
+      Listing.where(sold: 0)
+    end
   end
 
 end

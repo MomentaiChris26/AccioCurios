@@ -14,9 +14,9 @@ class ListingsController < ApplicationController
 
   
   def show
-  if user_signed_in?
-    session = helpers.stripe_session
-    @session_id = session.id
+    if user_signed_in?
+      session = helpers.stripe_session
+      @session_id = session.id
     end
   end
 
@@ -60,7 +60,7 @@ class ListingsController < ApplicationController
   end
 
   def set_listing
-    @listing = Listing.find(params[:id])
+    @listing = helpers.listing_pam
   end
 
   def listing_params

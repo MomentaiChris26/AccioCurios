@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
   # Routes for Admin
   get "admin_user", to: 'admin_user#index', as: "admin"
-  get 'admin_user/edit/:id', to: 'admin_user#edit'
+  get 'admin_user/edit/:id', to: 'admin_user#edit', as: "user_edit"
   put 'admin_user/edit/:id', to: 'admin_user#update'
   patch 'admin_user/edit/:id', to: 'admin_user#update'
   delete 'admin_user/edit/:id', to: 'admin_user#destroy'
