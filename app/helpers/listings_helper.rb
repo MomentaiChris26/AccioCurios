@@ -1,5 +1,9 @@
 module ListingsHelper
-  
+
+
+  def is_sold
+    @listing.sold == 'sold'
+  end
   def stripe_session
     Stripe::Checkout::Session.create(
       payment_method_types: ['card'],

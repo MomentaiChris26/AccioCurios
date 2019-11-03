@@ -6,7 +6,9 @@
   <div class="card">
     <h2 class="card-header"><%= @listing.title %></h2>
     <div class="card-body">
-      <%= (image_tag @listing.picture, size:"220x220") if @listing.picture.attached? %>
+      
+      <p><%= (image_tag @listing.picture, size:"220x220") if @listing.picture.attached? %></p>
+      <p>Item Status: <%= @listing.sold %></p>
       <h5 class="card-title">Asking Price $<%= @listing.price %></h5>
       <p>Posted By: <%= @listing.user.username %> </p>
       <p class="card-text">Condition: <%= @listing.condition.status %></p>
@@ -19,7 +21,15 @@
       <%= link_to "Edit", edit_listing_path(@listing), class:"btn btn-info"%>
       <%= link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
     <% elsif current_user.id != @listing.user_id %>
-    <button data-stripe="payment" class="btn btn-success">Buy Now</button>
+
+    <% if is_sold %>
+      <p>This item has been sold</p>
+    <% else %>
+      <button data-stripe="payment" class="btn btn-success">Buy Now</button>
+    <% end %>
+
+        
+        
     <% end %>
   <% else %>
     <%= link_to "Sign up To Buy", new_user_registration_path, class:"btn btn-info" %>

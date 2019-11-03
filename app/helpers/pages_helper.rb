@@ -12,4 +12,8 @@ module PagesHelper
     Listing.where(user_id: current_user.id, sold: 1)
   end
 
+  def purchase_listing
+    PurchaseHistory.where(user_id: current_user.id)
+  end
+
 end

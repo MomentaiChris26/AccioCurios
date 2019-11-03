@@ -1,0 +1,21 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Listing</th>
+      <th scope="col">Seller</th>
+      <th scope="col">Purchase Price</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% purchase_variable.each do |purchase| %>
+  <tr>
+    <td><%= purchase.listing.title %></td>
+    <td><%= purchase.listing.user.username %></td>
+    <td>$<%= purchase.listing.price %></td>
+    <td><%= link_to 'Go To Listing', listing_path(purchase.listing.id) %></td>
+    </td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
