@@ -1,12 +1,11 @@
 class PagesController < ApplicationController
   before_action :login_check, only: [:user_dashboard]
+  before_action :set_q_variable
   
   def index
-    @q = helpers.listing_search
   end
 
   def user_dashboard
-    
   end
 
   private
@@ -20,6 +19,9 @@ class PagesController < ApplicationController
     end
   end
 
+  def set_q_variable
+    @q = Listing.ransack(params[:q])
+  end
 
 
 end

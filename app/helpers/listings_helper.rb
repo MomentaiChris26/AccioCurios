@@ -1,5 +1,8 @@
 module ListingsHelper
 
+  def current_or_admin
+    current_user.admin == true or current_user.id == @listing.user_id
+  end
 
   def is_sold
     @listing.sold == 'sold'
@@ -27,9 +30,7 @@ module ListingsHelper
       )
   end
 
-  def search_params
-    Listing.ransack(params[:q])
-  end
+  
 
   
 end

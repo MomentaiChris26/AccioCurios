@@ -1,11 +1,17 @@
 class ListingsController < ApplicationController
   load_and_authorize_resource
   before_action :set_listing, only: [:show]
+  before_action :set_q_variable
 
-  def index
-    @q = helpers.listing_search
+
+  def search
     @listings = @q.result(distinct: true)
   end
+
+  def index
+    @listings = helpers.all_listings
+  end
+
   
   def show
   if user_signed_in?
@@ -48,6 +54,10 @@ class ListingsController < ApplicationController
 
   
   private 
+  
+  def set_q_variable
+    @q = Listing.ransack(params[:q])
+  end
 
   def set_listing
     @listing = Listing.find(params[:id])

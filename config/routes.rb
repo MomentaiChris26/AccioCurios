@@ -9,13 +9,17 @@ Rails.application.routes.draw do
   # pages/index is the home page.
   root "pages#index", to: 'pages/index'
 
-  # Routing for listings pages
-  get 'listings', to: 'listings#index', as: "listings"
+
+
 
   # CRUD for Listings
   resources :listings do
     resources :comments
   end
+
+  # Routing for Search Page
+  get 'search', to: 'listings#search', as: "search"
+
 
   # CRUD for Conditions
   resources :conditions

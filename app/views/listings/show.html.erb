@@ -6,7 +6,6 @@
   <div class="card">
     <h2 class="card-header"><%= @listing.title %></h2>
     <div class="card-body">
-      
       <p><%= (image_tag @listing.picture, size:"220x220") if @listing.picture.attached? %></p>
       <p>Item Status: <%= @listing.sold %></p>
       <h5 class="card-title">Asking Price $<%= @listing.price %></h5>
@@ -14,10 +13,9 @@
       <p class="card-text">Condition: <%= @listing.condition.status %></p>
       <p class="card-text">Category: <%= @listing.category.name %></p>
       <p class="card-text"><%= @listing.description %></p>
-
   <div class="check-privilages">
     <% if can? :manage, Listing %>
-    <% if current_user.admin == true or current_user.id == @listing.user_id  %>
+    <% if current_or_admin  %>
       <%= link_to "Edit", edit_listing_path(@listing), class:"btn btn-info"%>
       <%= link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
     <% elsif current_user.id != @listing.user_id %>
@@ -27,8 +25,6 @@
     <% else %>
       <button data-stripe="payment" class="btn btn-success">Buy Now</button>
     <% end %>
-
-        
         
     <% end %>
   <% else %>

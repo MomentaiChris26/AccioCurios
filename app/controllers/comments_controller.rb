@@ -13,9 +13,12 @@ class CommentsController < ApplicationController
     
 
     private 
+
+    
     def set_listing
       @listing = Listing.find(params[:listing_id])
     end
+
     def comment_params
       params.require(:comment).permit(:body,:user_id,:listing_id)
     end
