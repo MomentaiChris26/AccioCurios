@@ -35,17 +35,23 @@
       <%= form.label :posted_date %><br>
       <%= form.date_field :posted_date, :value => Time.now.strftime('%Y-%m-%d'), class:"form-control" %>
     </p>
-
     <p>
     What is the condition of the collectible?
     <%= form.collection_select(:condition_id, Condition.all, :id, :status, :prompt => true) %>
     </p>
-
+    <p>
+    The condition of my collectible is not listed. Add new condition?
+    <%= form.check_box :condition %>
+    <div id="new_condition" style="display:none;">
+      <%= form.fields_for :condition, Condition.new do |ff| %>
+        <%= ff.text_field :status, class:"form-control", placeholder:"Add a new condition" %>
+      <% end %>
+    </div>
+    </p>
     <p>
     Select a Category
-    <%= form.collection_select(:category_id, Category.all, :id, :name, :prompt => true ) %>
+    <%= form.collection_select(:category_id, Category.all, :id, :name, :prompt => true) %>
     </p>
-    
     
     <p>
     <button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">
@@ -56,7 +62,7 @@
     <div class="card card-body">
         <p>
       <%= form.fields_for :category, Category.new do |ff| %>
-        <%= ff.text_field :name, class:"form-control", placeholder:"Add a new Category",  include_blank: true %>
+        <%= ff.text_field :name, class:"form-control", placeholder:"Add a new Category" %>
       <% end %>
     </p>
     </div>
@@ -69,5 +75,18 @@
     <%= link_to 'Return to listings', listings_path %>
   <% end %>
 </div>
+
+<script type="text/javascript">
+  var checkbox = document.getElementById('listing_condition');
+  var details_div = document.getElementById('new_condition');
+  checkbox.onchange = function() {
+    if(this.checked) {
+      details_div.style['display'] = 'block';
+    } else {
+      details_div.style['display'] = 'none';
+    }
+  };
+</script>
+
 
 
