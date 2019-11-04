@@ -1,8 +1,25 @@
-<h1>My Dashboard</h1>
+<div class="container-fluid">
+  <h1>My Dashboard</h1>
+  <br>
 
-<h3>Purchase History</h3>
-  <%= render partial: "purchasetable", locals: { purchase_variable: purchase_listing } %><br>
-<h3>My Current Listings</h3>
-  <%= render partial: "listingtable", locals: { listing_variable: unsold_listings } %><br>
-<h3>Sold Listings</h3>
-  <%= render partial: "listingtable", locals: { listing_variable: sold_listings } %>
+  <div class="myDetails">
+    <h3>My Details</h3>
+    <p>Username: <%= current_user.username %></p>
+    <p>Email: <%= current_user.email %> </p>
+    <p><%= link_to 'Edit My Account', edit_user_registration_path %></p>
+  </div><br>
+
+
+  <h3>Purchase History</h3>
+    <%= render partial: "purchasetable", locals: { purchase_variable: purchase_listing } %><br>
+  <h3>My Current Listings</h3>
+    <%= render partial: "listingtable", locals: { listing_variable: unsold_listings } %><br>
+  <h3>Sold Listings</h3>
+    <%= render partial: "listingtable", locals: { listing_variable: sold_listings } %>
+
+</div>
+
+
+
+
+
