@@ -10,13 +10,18 @@
 # Creates new admin account
 
 def admin_account
-  User.create(username:"admin",email:"test@test.com",encrypted_password: "admin12345",admin:true)
+  User.create(username:"admin",email:"test@test.com",password: "admin12345",admin:true)
 end
 
 # Create new user accounts
 def user_accounts
   5.times do
-    User.create(username: Faker::Internet.user_name, email: Faker::Internet.email, encrypted_password: "123456" )
+    user = User.new
+    user.username = Faker::Internet.user_name
+    user.email = Faker::Internet.email
+    user.password = "123456789"
+    user.password_confirmation = "123456789"
+    user.save!
   end
 end
 
@@ -34,8 +39,9 @@ def seed_categories
   template_categories.each do |category|
     Category.create(name: category)
   end
-
 end
+
+
 
 
 # Runs methods above 
