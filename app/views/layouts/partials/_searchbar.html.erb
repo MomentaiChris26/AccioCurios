@@ -1,7 +1,7 @@
 <%= search_form_for(@q , url: search_path)  do |f| %>
   <p><%= f.text_field  :title_cont , placeholder:"Search for a collectible", class:"form-control form-inline" %></p>
   <%= f.submit class:"btn btn-primary" %>
-  <%= link_to 'Clear search', listings_path %>
+  <%= link_to 'Clear search', :back %>
 <% end %>
 
  
