@@ -10,7 +10,7 @@
 
 # Creates template for product conditions to be used
 def seed_conditions
-  template_conditions = ["New","Used"]
+  template_conditions = ["New","Used","Old"]
   template_conditions.each do |condition|
     Condition.create(status: condition)
   end
