@@ -1,13 +1,8 @@
 class ListingsController < ApplicationController
   load_and_authorize_resource
-  skip_authorize_resource :only => :search 
   before_action :set_listing, only: [:show]
   before_action :set_q_variable
 
-
-  def search
-    @listings = @q.result(distinct: true)
-  end
 
   def index
     @listings = @q.result(distinct: true)

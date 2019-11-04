@@ -10,15 +10,11 @@ Rails.application.routes.draw do
   root "pages#index", to: 'pages/index'
 
 
-
-
   # CRUD for Listings
   resources :listings do
     resources :comments
   end
 
-  # Routing for Search Page
-  get 'search', to: 'listings#search', as: "search"
 
 
   # CRUD for Conditions
