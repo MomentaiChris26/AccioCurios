@@ -10,6 +10,7 @@
 # Creates new admin account
 def admin_account
   User.create(username:"admin",email:"test@test.com",password: "admin12345",admin:true)
+  puts "created admin account"
 end
 
 # Create new user accounts
@@ -21,6 +22,7 @@ def user_accounts
     user.password = "123456789"
     user.password_confirmation = "123456789"
     user.save!
+    puts "created user"
   end
 end
 
@@ -52,8 +54,8 @@ def seed_listings
     listing.condition_id = rand 1..3
     listing.category_id = rand 1..4
     listing.save!
-
   end
+  puts "Created listings"
 end
 
 
