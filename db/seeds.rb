@@ -8,7 +8,6 @@
 
 
 # Creates new admin account
-
 def admin_account
   User.create(username:"admin",email:"test@test.com",password: "admin12345",admin:true)
 end
@@ -41,7 +40,21 @@ def seed_categories
   end
 end
 
+def seed_listings
+  counter = 1
+  8.times do
+    listing = Listing.new
+    listing.title = Faker::App.name
+    listing.posted_date = Time.now()
+    listing.description = Faker::Quotes::Shakespeare.king_richard_iii_quote
+    listing.user_id = rand 1..5
+    listing.price = rand 1..500
+    listing.condition_id = rand 1..3
+    listing.category_id = rand 1..4
+    listing.save!
 
+  end
+end
 
 
 # Runs methods above 
@@ -49,3 +62,4 @@ admin_account
 user_accounts
 seed_conditions
 seed_categories
+seed_listings
