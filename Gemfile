@@ -70,3 +70,5 @@ gem "ransack"
 gem 'cancancan'
 
 gem "stripe", "~> 5.7"
+
+gem "faker", "~> 2.7"

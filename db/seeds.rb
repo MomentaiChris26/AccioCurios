@@ -7,6 +7,18 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+# Creates new admin account
+
+def admin_account
+  User.create(username:"admin",email:"test@test.com",encrypted_password: "admin12345",admin:true)
+end
+
+# Create new user accounts
+def user_accounts
+  5.times do
+    User.create(username: Faker::Internet.user_name, email: Faker::Internet.email, encrypted_password: "123456" )
+  end
+end
 
 # Creates template for product conditions to be used
 def seed_conditions
@@ -19,7 +31,6 @@ end
 # Creates template categories for testing purposes
 def seed_categories
   template_categories = ["Toys","Cards","Video Games","Misc"]
-
   template_categories.each do |category|
     Category.create(name: category)
   end
@@ -28,5 +39,7 @@ end
 
 
 # Runs methods above 
+admin_account
+user_accounts
 seed_conditions
 seed_categories
