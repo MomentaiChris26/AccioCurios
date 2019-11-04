@@ -1,0 +1,27 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Buyer's name</th>
+      <th scope="col">Buyer's Email</th>
+      <th scope="col">Title</th>
+      <th scope="col">Purchase Price</th>
+      <th scope="col">Condition</th>
+      <th scope="col">Category</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% listing_variable.each do |listing| %>
+  <tr>
+    <td><%= search_buyer(listing.buyer_id).username %></td>
+    <td><%= search_buyer(listing.buyer_id).email %></td>
+    <td><%= listing.title %></td>
+    <td>$<%= listing.price %></td>
+    <td><%= listing.condition.status %></td>
+    <td><%= listing.category.name %></td>
+    <td><%= listing.description %></td>
+    </td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>

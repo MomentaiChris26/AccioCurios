@@ -11,14 +11,17 @@ module AdminUserHelper
   def list_all_users
     User.all
   end
-
-
+  
   def new_category
     Category.new
   end
 
   def list_all_categories
     Category.all
+  end
+
+  def search_buyer(user)
+    User.find(user)
   end
 
 end
