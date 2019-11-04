@@ -4,7 +4,7 @@
 
 
 .homepage-h1 {
-  color: white;
+  color: grey;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -16,7 +16,14 @@ section.masthead {
 
 section.masthead .overlay {
   position: absolute;
+  background-image: url("toybackground.jpg"); /* The image used */
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-size: cover; 
   background-color: #004E64;
+  -webkit-box-shadow: 10px 10px 23px -7px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 23px -7px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 23px -7px rgba(0,0,0,0.75);
   height: 82vh;
   width: 100%;
   top: 0;
