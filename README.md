@@ -5,7 +5,12 @@ The problem to be solved is to have a market place for people to buy and sell th
 
 This problem needs to be solved, as there isn't a dedicated marketplace for a users to buy or sell their collectibles. 
 
-Add URL HERE ONCE DEPLOYED
+## Links
+
+[AccioCurios Site Link](https://secret-sea-86315.herokuapp.com/)
+[Github Link](https://github.com/MomentaiChris26/AccioCurios)
+ 
+
 
 ## Features
 * Listings Page

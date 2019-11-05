@@ -4,8 +4,8 @@
 
   <div class="myDetails">
     <h3>My Details</h3>
-    <p>Username: <%= current_user.username %></p>
-    <p>Email: <%= current_user.email %> </p>
+    <p>Username: <%= sanitize current_user.username %></p>
+    <p>Email: <%= sanitize current_user.email %> </p>
     <p><%= link_to 'Edit My Account', edit_user_registration_path %></p>
   </div><br>
 
