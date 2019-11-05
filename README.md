@@ -37,6 +37,7 @@ Search database
 ### Stripe
 Payment system
 
+## Model 
 
-
-
+### ERD
+![AccioCurios ERD](./resources/erd.jpg)

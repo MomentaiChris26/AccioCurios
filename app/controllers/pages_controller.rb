@@ -3,9 +3,11 @@ class PagesController < ApplicationController
   before_action :set_q_variable
   
   def index
+    
   end
 
   def user_dashboard
+
   end
 
   private
