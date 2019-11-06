@@ -9,7 +9,11 @@ Currently, there are big marketplaces, including Ebay, Amazon or Gumtree that al
 ## Links
 
 [AccioCurios Site Link](https://secret-sea-86315.herokuapp.com/)
+
 [Github Link](https://github.com/MomentaiChris26/AccioCurios)
+
+## Sitemap
+![AccioCurios Sitemap](./resources/sitemap.jpg)
 
 ## High-Level Components (abstractions)
 
@@ -22,26 +26,6 @@ All users data, listings data is stored into an Postgresql database. The informa
 Is the layer of the rails application that's in charge of facilitates the ability for the application to upload files into a cloud storage from the application and can be queried into the application so a user can interact with. 
 
 In AccioCurios, Active Storage allows a user to upload a screenshot or picture of the product they wish to sell. This is linked to AWS S3 cloud storage, where it can be retrieved and viewed in the listings pages.
-
-## Stripe
-
-
-
-## Features/Components
-* Listings Page
-* Ability to sell and buy collectibles
-* Dashboard that contains user details, purchases, and personal listings.
-* User authentication
-* Admin Dashboard
-* User Dashboard
-* Ability to search for listings
-
-## Sitemap
-![AccioCurios Sitemap](./resources/sitemap.jpg)
-
-## Wireframe
-
-## Gems Used
 
 ### Devise
 User authentication and authorization
@@ -65,18 +49,7 @@ Search database
 Payment system
 - provides a payment system that allows the user to purchase the product. 
 
-## Model 
-
-
-
-
-
-
-## Third party services
-
-## Problem trying to solve
-
-## Model 
+## Model
 
 - Relationships
 - Relations
@@ -98,6 +71,14 @@ As a seller, they can sell their product, and maintain their products through th
 When the seller creates the listing, they are able to specify the details of their product, including title, upload a picture of the product, and other necessary details to ensure the buyer is fully informed before they make purchase.
 
 There is an admin role, which grants a specific user (such as a manager) the ability to delete or edit another person's listing, however restricts the admin from being able purchase the product. This security feature prevents an admin from abusing their power.
+
+## Development and Planning
+
+### Planning
+
+![Trello 2](./resources/trello2.jpg)
+
+![Trello 1](./resources/trello1.jpg)
 
 
 ## Wireframe
