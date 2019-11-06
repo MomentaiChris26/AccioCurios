@@ -76,9 +76,9 @@ There is an admin role, which grants a specific user (such as a manager) the abi
 
 ### Planning
 
-![Trello 2](./resources/trello2.jpg)
+![Trello 2](./resources/trello2.JPG)
 
-![Trello 1](./resources/trello1.jpg)
+![Trello 1](./resources/trello1.JPG)
 
 
 ## Wireframe
