@@ -23,7 +23,7 @@ Is a layer in the rails application that allows the creation, retention and use 
 All users data, listings data is stored into an Postgresql database. The information is stored into the database via forms inside the rails application. It can also be retrieved using simple queries inside the application, such as `Listings.all` that can be used to display data into the view.
 
 ### Active Storage
-Is the layer of the rails application that's in charge of facilitates the ability for the application to upload files into a cloud storage from the application and can be queried into the application so a user can interact with. 
+Is the layer of the rails application that's in charge of facilitates the ability for the application to upload files into a cloud storage from the application and can be queried into the application so a user can interact with.
 
 In AccioCurios, Active Storage allows a user to upload a screenshot or picture of the product they wish to sell. This is linked to AWS S3 cloud storage, where it can be retrieved and viewed in the listings pages.
 
@@ -33,21 +33,17 @@ User authentication and authorization
 - Gives ability to create user roles including an admin role.
 - Users is also a model in the ERD where a user can have many listings and can have many purchase history. 
 
-
 ### Cancancan
 User authorization
-- Gives users access to specific functions based on what the role of the user
-- Provides authorisation and stanization for users based on their id. 
-
+- Gives users access to specific functions based on what the role of the user.
+- Provides authorisation and stanization for users based on their id.
 
 ### Ransack
 Search database
-- Adds the ability to search using query in the database based on the title listing.
-- Ability to create a search bar website
+Ransack is a ruby gem that allows the implementation of a search functionality into the application. The search functionality comes in the form of a search bar, that qureies the database and returns the results from the database. Ransacks uses SQL commands to query the database.
 
 ### Stripe
 Payment system
-- provides a payment system that allows the user to purchase the product. 
 
 ## Model
 
@@ -75,13 +71,15 @@ There is an admin role, which grants a specific user (such as a manager) the abi
 ## Development and Planning
 
 ### Planning
+Trello was used as the planning tool to document and check progress of the application. The process for keeping track of the tasks was putting them into individual cards on trello. Cards are lined up in the backlog based on the importance of the task. They are moved to 'Doing' when they're being worked on and finally moved to 'Done'. once the task is completed.
 
 ![Trello 2](./resources/trello2.JPG)
 
 ![Trello 1](./resources/trello1.JPG)
 
-
 ## Wireframe
+
+Below are the wireframe for the design of the website.
 
 Home Page
 ![Home Page](./resources/home_page.png)
@@ -101,7 +99,6 @@ All Listings Page (375x812) (Mobile View)
 Create Listings Page
 
 ![Create listing](./resources/create_listing.png)
-
 
 ## Database Models
 
@@ -216,3 +213,8 @@ ActiveRecord::Schema.define(version: 2019_11_02_102034) do
   add_foreign_key "purchase_histories", "users"
 end
 ````
+
+## Third Party Services
+
+### Bootstrap
+Bootstrap was used for templates css styling in the application. This allowed the implementation of styling to the website. The elements are provided from an external CDN provided by [Stack Path]("https://www.stackpath.com/"). The styles are taken from a code extract on [Bootstrap]("https://getbootstrap.com/") and modified to fit the pages styling requirement.
