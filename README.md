@@ -52,9 +52,9 @@ Payment system
 - Normalized data
 
 ## User Stories
-Buyers and sellers can purchase or sell their collectibles to each other in a safe secure web application.
+Buyers and sellers can purchase or sell their collectibles to each other in a safe and secure web application.
 
-Users sign up with a single account, which allows them to be both a buyer and seller.
+Users sign up with a single account, which allows them to be both a buyer and seller on the same account.
 
 When a user signs up, they have access to their own personal dashboard that lists all their recent purchases, unsold and sold listings on a single page.
 
@@ -217,4 +217,4 @@ end
 ## Third Party Services
 
 ### Bootstrap
-Bootstrap was used for templates css styling in the application. This allowed the implementation of styling to the website. The elements are provided from an external CDN provided by [Stack Path]("https://www.stackpath.com/"). The styles are taken from a code extract on [Bootstrap]("https://getbootstrap.com/") and modified to fit the pages styling requirement.
+Bootstrap was used for css styling in the application. This allowed the implementation of styling to the website. The elements are provided from an external CDN provided by [Stack Path]("https://www.stackpath.com/"). The styles are taken from a code extract on [Bootstrap]("https://getbootstrap.com/") and modified to fit the pages styling requirement.
