@@ -74,6 +74,10 @@ There is an admin role, which grants a specific user (such as a manager) the abi
 ### Planning
 Trello was used as the planning tool to document and check progress of the application. The process for keeping track of the tasks was putting them into individual cards on trello. Cards are lined up in the backlog based on the importance of the task. They are moved to 'Doing' when they're being worked on and finally moved to 'Done'. once the task is completed.
 
+![Trello 4](./resources/trello4.JPG)
+
+![Trello 3](./resources/trello3.JPG)
+
 ![Trello 2](./resources/trello2.JPG)
 
 ![Trello 1](./resources/trello1.JPG)
@@ -103,6 +107,19 @@ Create Listings Page
 
 ## Database Models
 
+### Database Relationships
+
+Users has many listings
+Condition has many listings
+Category has many listings
+Listing has many comments
+Listings has many purchase_history
+Users has many purchase_history
+
+
+
+### Database Interactions
+
 The interaction in the ERD is based on a simple design where the relationships revolve around the listings.
 
 As demonstrated below, the ERD contains 6 tables, that interact with listings in one way or another.
@@ -115,10 +132,10 @@ Next, table connected to Listings, is the User table. Users can have many listin
 
 Comments table is attached to listings. A Listing can have many comments. The comments belong to specific listings as the user would have a space to communicate between each other for stuff such as inquiries.
 
-Finally, the purchase history table is designed to store relevant data relating to when a user has completed a purchase. It 
+Finally, the purchase history table is designed to store relevant data relating to when a user has completed a purchase. 
 
 ### ERD
-![AccioCurios ERD](./resources/erd.png)
+![AccioCurios ERD](./resources/erd.jpg)
 
 ### Schema
 
@@ -128,7 +145,7 @@ Extract from Application Schema
 
 ````ruby
 
-ActiveRecord::Schema.define(version: 2019_11_02_102034) do
+ActiveRecord::Schema.define(version: 2019_11_07_051215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -212,6 +229,7 @@ ActiveRecord::Schema.define(version: 2019_11_02_102034) do
     t.datetime "updated_at", null: false
     t.string "username", default: "", null: false
     t.boolean "admin", default: false
+    t.datetime "deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -225,6 +243,7 @@ ActiveRecord::Schema.define(version: 2019_11_02_102034) do
   add_foreign_key "purchase_histories", "listings"
   add_foreign_key "purchase_histories", "users"
 end
+
 ````
 
 ## Third Party Services

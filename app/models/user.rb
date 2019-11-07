@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :listings, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :purchase_histories, dependent: :destroy
+  has_many :purchase_histories
   validates :username, :email, uniqueness: true
 
   # instead of deleting, indicate the user requested a delete & timestamp it  

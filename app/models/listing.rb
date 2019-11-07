@@ -11,7 +11,7 @@ class Listing < ApplicationRecord
 
   has_one_attached :picture, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :purchase_histories, dependent: :destroy
+  has_many :purchase_histories
 
   enum sold: { available: 0, sold: 1 }
   accepts_nested_attributes_for :category, reject_if: :all_blank, allow_destroy: true
