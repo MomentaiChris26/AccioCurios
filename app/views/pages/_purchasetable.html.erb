@@ -11,7 +11,13 @@
   <% purchase_variable.each do |purchase| %>
   <tr>
     <td><%= purchase.listing.title %></td>
-    <td><%= purchase.listing.user.username %></td>
+    <td>
+    <% if purchase.listing.user.deleted_at.nil? == false %>
+      <%= purchase.listing.user.username %> [USER DELETED]
+    <% else %>
+      <%= purchase.listing.user.username %>
+    <% end %>
+    </td>
     <td>$<%= purchase.listing.price %></td>
     <td><%= link_to 'Go To Listing', listing_path(purchase.listing.id) %></td>
     </td>

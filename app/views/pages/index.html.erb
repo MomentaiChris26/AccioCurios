@@ -10,7 +10,7 @@
             <%= search_form_for @q , url: listings_path do |f| %>
             <div class="form-row">
             <div class="col-12 col-md-9 mb-2 mb-md-0">
-              <%= f.search_field :title_cont,placeholder:"Search for a collectible", class:"form-control form-control-lg" %>
+              <%= f.search_field :title_or_description_cont, placeholder:"Search for a collectible", class:"form-control form-control-lg" %>
             </div>
             <div class="col-12 col-md-3">
               <%= f.submit class:"btn btn-block btn-lg btn-primary" %>

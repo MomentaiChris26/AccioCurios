@@ -13,7 +13,13 @@
   <tbody>
   <% listing_variable.each do |listing| %>
   <tr>
-    <td><%= search_buyer(listing.buyer_id).username %></td>
+  <td>
+  <% if search_buyer(listing.buyer_id).deleted_at.nil? == false %>
+    <%= search_buyer(listing.buyer_id).username %> [USER DELETED]
+  <% else %>
+    <%= search_buyer(listing.buyer_id).username %>
+  <% end %>
+  </td>
     <td><%= search_buyer(listing.buyer_id).email %></td>
     <td><%= listing.title %></td>
     <td>$<%= listing.price %></td>

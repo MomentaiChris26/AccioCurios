@@ -1,0 +1,25 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Listing Owner</th>
+      <th scope="col">Listing Status</th>    
+      <th scope="col">Title</th>
+      <th scope="col">Price</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% all_listings.each do |listing| %>
+  <tr>
+    <td><%= listing.user.username %></td>
+    <td><%= listing.sold %></td>
+    <td><%= listing.title %></td>
+    <td>$<%= listing.price %></td>
+    <td><%= link_to 'Edit', listing_path(listing) %></td>
+    <td><%= link_to 'Delete', listing_path(listing), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+  </tr>
+  <% end %>
+  </tbody>
+</table>

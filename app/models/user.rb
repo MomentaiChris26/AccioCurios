@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   # instead of deleting, indicate the user requested a delete & timestamp it  
   def soft_delete 
-    update_attribute(:deleted_at, Time.current)  
+    update_attribute(:deleted_at, Time.current)
   end  
   
   # ensure user account is active  

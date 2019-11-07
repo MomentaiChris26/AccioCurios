@@ -12,12 +12,18 @@ module PagesHelper
     PurchaseHistory.where(user_id: current_user.id)
   end
 
-  def all_listings
+  def all_listings_unsold
     if user_signed_in?
       Listing.where(sold: 0).where.not(user_id: current_user.id)
     else
       Listing.where(sold: 0)
     end
   end
+
+  def all_listings
+    Listing.all
+  end
+
+  
 
 end
