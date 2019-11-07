@@ -28,10 +28,11 @@ Is the layer of the rails application that's in charge of facilitates the abilit
 In AccioCurios, Active Storage allows a user to upload a screenshot or picture of the product they wish to sell. This is linked to AWS S3 cloud storage, where it can be retrieved and viewed in the listings pages.
 
 ### Devise
-User authentication and authorization
-- Devise gem is used to create user accounts and the ability to login using an email and password.
-- Gives ability to create user roles including an admin role.
-- Users is also a model in the ERD where a user can have many listings and can have many purchase history. 
+
+Devise was used in this application to handle the creation and maintanance.
+
+Devise is a gem that allows users to create and stores login details as well a level of authorization for user contents. Devise interacts with the Active Record layer, by creating a table inside the database, which stores specific information related to user accounts. It also creates the controllers and views associated user accounts.
+
 
 ### Cancancan
 User authorization
@@ -106,10 +107,22 @@ The interaction in the ERD is based on a simple design where the relationships r
 
 As demonstrated below, the ERD contains 6 tables, that interact with listings in one way or another.
 
+The primary table 'listings' contains connections to all tables in the ERD.
+
+Firstly, its separates two attributes into its own tables. These are conditions and categories. The relationship between this is that conditions and categories can have many listings. The purpose of this is to allow users to search for specific listings based on those attributes.
+
+Next, table connected to Listings, is the User table. Users can have many listings and a listing will belong to a user. This is set up this way for authorization purposes. It assigns the listing to a user which only the user can modify or delete the listing.
+
+Comments table is attached to listings. A Listing can have many comments. The comments belong to specific listings as the user would have a space to communicate between each other for stuff such as inquiries.
+
+Finally, the purchase history table is designed to store relevant data relating to when a user has completed a purchase. It 
+
 ### ERD
 ![AccioCurios ERD](./resources/erd.png)
 
 ### Schema
+
+
 
 Extract from Application Schema
 

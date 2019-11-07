@@ -5,5 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :listings, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :purchase_histories, dependent: :destroy
   validates :username, :email, uniqueness: true
 end
