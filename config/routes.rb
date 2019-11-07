@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'}
+
+
+  # devise_for :users, controllers: {sessions: 'users/sessions'}  
   # Giving sign in page its own path
   devise_scope :user do
     get 'login', to: 'devise/sessions#new'
