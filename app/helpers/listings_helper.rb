@@ -1,6 +1,6 @@
 module ListingsHelper
 
-  def current_or_admin
+  def current_or_admin # Checks if the user id matches the listing id or if the current user is an admin
     current_user.admin == true or current_user.id == @listing.user_id
   end
 
@@ -29,8 +29,6 @@ module ListingsHelper
       cancel_url: "#{root_url}listings"
       )
   end
-
-  
 
   
 end

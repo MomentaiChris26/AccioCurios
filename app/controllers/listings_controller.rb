@@ -12,10 +12,10 @@ class ListingsController < ApplicationController
   
   def show
     if user_signed_in?
+    # assigns the session variable using the method from the listing helper, and creates a stripe session which takes specific parameters for stripe checkout.
       session = helpers.stripe_session 
-      # assigns the session variable using the method from the listing helper, and creates a stripe session which takes specific parameters for stripe checkout.
-      
-      @session_id = session.id # Creates a session id for stripe. 
+    # Creates a session id for stripe. 
+      @session_id = session.id 
     end
   end
 
@@ -57,11 +57,11 @@ class ListingsController < ApplicationController
   
   private 
   
-  def set_q_variable
+  def set_q_variable # Sets q variable for ransack gem to utilise its search function
     @q = Listing.where(sold: 0).ransack(params[:q])
   end
 
-  def set_listing
+  def set_listing # Sets the instance variable to the specific listing
     @listing = helpers.listing_pam
   end
 

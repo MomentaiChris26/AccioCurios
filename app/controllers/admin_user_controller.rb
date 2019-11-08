@@ -15,8 +15,8 @@ class AdminUserController < ApplicationController
   params[:user].delete(:password) if params[:user][:password].blank?
   params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
   
-  # update method for notifying admin whether user has been successfully updated or not
-  if @user.update(user_params)
+  
+  if @user.update(user_params) # update method for notifying admin whether user has been successfully updated or not
     flash[:alert] = "Successfully updated User."
     redirect_to admin_path
   else
@@ -26,7 +26,7 @@ class AdminUserController < ApplicationController
  end
 
   def destroy
-    if @user.destroy
+    if @user.destroy # Provides a method that allows the admin to destroy the user
       flash[:alert] = "Successfully deleted User."
       redirect_to admin_path
     end
@@ -34,7 +34,7 @@ class AdminUserController < ApplicationController
 
 
   private
-  def set_user
+  def set_user # Sets the user id for editing or deleting purposes
     @user = User.find(params[:id])
   end
     

@@ -1,4 +1,7 @@
 class Condition < ApplicationRecord
-  validates :status, uniqueness: true, presence: true
+  # Sets validations
+  validates :status, :format => { with: /\A[a-zA-Z ]+\z/}, uniqueness: true, presence: true
+
+  # Sets relationships in database
   has_many :listings
 end
