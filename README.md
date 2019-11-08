@@ -85,9 +85,7 @@ Purchase_history belongs to listings and users
 Listings has many purchase_history
 Users has many purchase_history
 
-
-
-### 4.2 ERD Design and interaction
+## 4.2 ERD Design and interaction
 
 The interaction in the ERD is based on a simple design where the relationships revolve around the listings table. In regards to the ERD, the interaction occurs around the Listings table, which is the application's foundation is built around.
 
@@ -101,10 +99,9 @@ The purchase histories table is a type of join table that is used to display whe
 
 Finally, the last table is the user table, which contains information relating to user accounts within the database. User table has relations with three separate tables within the database. Firstly, a user will be able to have one or many listings. Next, the user should be able to make multiple comments to different listings. And finally, the user can have more than one purchase history, as they should be able to see all the purchases they've made.
 
-
 ![AccioCurios ERD](./resources/erd.jpg)
 
-### 4.3 Schema
+## 4.3 Schema
 
 Extract from Application Schema
 
