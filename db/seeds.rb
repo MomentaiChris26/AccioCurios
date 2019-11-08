@@ -9,7 +9,7 @@
 
 # Creates new admin account
 def admin_account
-  User.create(username:"admin",email:"test@test.com",password: "admin12345",admin:true)
+  User.create(username:"admin",email:"admin@test.com",password: "admin12345",admin:true)
   puts "created admin account"
 end
 
@@ -38,32 +38,28 @@ end
 
 # Creates template categories for testing purposes
 def seed_categories
-  template_categories = ["Toys","Cards","Video Games","Misc"]
+  template_categories = ["Toys","Cards","Games","Misc"]
   template_categories.each do |category|
     Category.create(name: category)
   end
   puts "created categories"
 end
 
-# def seed_listings
-#   8.times do
-#     listing = Listing.new
-#     listing.title = Faker::App.name
-#     listing.posted_date = Time.now()
-#     listing.description = Faker::Quotes::Shakespeare.king_richard_iii_quote
-#     listing.user_id = rand 1..5
-#     listing.price = rand 1..500
-#     listing.condition_id = rand 1..3
-#     listing.category_id = rand 1..4
-#     listing.save!
-#   end
-#   puts "Created listings"
-# end
-
-
 # Runs methods above 
 admin_account
 user_accounts
 seed_conditions
 seed_categories
-# seed_listings
+
+Listing.create(title:"Rare Charizard Card", posted_date: Time.now(),description: Faker::Lorem.sentence, user_id: rand(1..4),price: rand(1..500),condition_id: rand(1..3),category_id: 2 )
+Listing.find(1).picture.attach(io: File.open('./app/assets/images/charizard.jpg'), filename: 'charizard.jpg')
+puts "Created listings"
+Listing.create(title:"Legend of Zelda NES",posted_date: Time.now(),description: Faker::Lorem.sentence, user_id: rand(1..4),price: rand(1..500),condition_id: 2,category_id: 3 )
+Listing.find(2).picture.attach(io: File.open('./app/assets/images/zelda.jpg'), filename: 'zelda.jpg')
+puts "Created listings"
+Listing.create(title:"Lego Spaceman",posted_date: Time.now(),description: Faker::Lorem.sentence, user_id: rand(1..4),price: rand(1..500),condition_id: 2,category_id: 1 )
+Listing.find(3).picture.attach(io: File.open('./app/assets/images/legospaceman.jpg'), filename: 'legospaceman.jpg')
+puts "Created listings"
+Listing.create(title:"Playstation 1",posted_date: Time.now(),description: Faker::Lorem.sentence, user_id: rand(1..4),price: rand(1..500),condition_id: 2,category_id: 4 )
+Listing.find(4).picture.attach(io: File.open('./app/assets/images/ps1.jpg'), filename: 'ps1.jpg')
+puts "Created listings"
