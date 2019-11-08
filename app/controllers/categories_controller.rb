@@ -1,7 +1,8 @@
 class CategoriesController < ApplicationController
-  authorize_resource :class => false
+  load_and_authorize_resource # Cancancan authorisation which only allows admin to access. 
   before_action :set_category, only: [:edit, :update, :show, :destroy] 
 
+  # Provides method for creation of Categories
   def create
     @category = Category.create(category_params)
     if @category.errors.any?
@@ -12,6 +13,7 @@ class CategoriesController < ApplicationController
     end
   end
 
+  # Provides method for deletion of Categories
   def destroy
     @category.destroy
     flash[:alert] = "Category Sucessfully Deleted"

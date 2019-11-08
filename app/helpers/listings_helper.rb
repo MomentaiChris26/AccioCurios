@@ -4,11 +4,11 @@ module ListingsHelper
     current_user.admin == true or current_user.id == @listing.user_id
   end
 
-  def is_sold
+  def is_sold # Checks if the listing has a status of "sold"
     @listing.sold == 'sold'
   end
   
-  def stripe_session
+  def stripe_session # Creates a stripe session and takes specific parameters for stripe to use in checkout
     Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       customer_email: current_user.email,

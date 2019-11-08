@@ -5,21 +5,25 @@ class ListingsController < ApplicationController
 
 
   def index
-    @listings = @q.result(distinct: true)
+    # Uses the Ransack library to either show all listings or result results based on what the user inputs in the search bar
+    @listings = @q.result(distinct: true) 
   end
 
   
   def show
     if user_signed_in?
-      session = helpers.stripe_session
-      @session_id = session.id
+      session = helpers.stripe_session 
+      # assigns the session variable using the method from the listing helper, and creates a stripe session which takes specific parameters for stripe checkout.
+      
+      @session_id = session.id # Creates a session id for stripe. 
     end
   end
 
   def new
-    @listing = Listing.new
+    @listing = Listing.new # Initialises and assigns listing instance variable for create method.
   end
 
+  # Provides method for create of listing using specific parameters and storing the listing into the database
   def create
     @listing = current_user.listings.create(listing_params)
     if @listing.errors.any?
@@ -34,6 +38,7 @@ class ListingsController < ApplicationController
 
   end
   
+  # Provides method for updating a listing in the database 
   def update
     if @listing.update(listing_params)
       flash[:alert] = "Listing Sucessfully Updated"
@@ -43,6 +48,7 @@ class ListingsController < ApplicationController
     end
   end
 
+  # Provides method for destroying a listing from the database
   def destroy
     @listing.destroy
     redirect_to listings_path

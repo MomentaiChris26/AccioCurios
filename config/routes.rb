@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
 
   # CRUD for Conditions
-  resources :conditions
+  resources :conditions, only: [:create, :edit, :update, :show, :destroy]
 
   # CRUD for Categories
   resources :categories, only: [:create, :edit, :update, :show, :destroy]

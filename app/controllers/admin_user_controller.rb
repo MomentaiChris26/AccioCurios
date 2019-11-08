@@ -1,5 +1,5 @@
 class AdminUserController < ApplicationController
-  authorize_resource :class => false
+  authorize_resource :class => false # Cancancan authorisation to block non-admin from accessing admin functionalities
   before_action :set_user, only: [:edit, :update, :show, :destroy]
   
   def index
@@ -7,7 +7,7 @@ class AdminUserController < ApplicationController
   end
 
  def edit
-  authorize! :read, :admin_user
+  authorize! :read, :admin_user # Cancancan authorisation that prevents non-admin from accessing the edit function in the admin controller
  end
 
  def update
@@ -15,6 +15,7 @@ class AdminUserController < ApplicationController
   params[:user].delete(:password) if params[:user][:password].blank?
   params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
   
+  # update method for notifying admin whether user has been successfully updated or not
   if @user.update(user_params)
     flash[:alert] = "Successfully updated User."
     redirect_to admin_path

@@ -1,10 +1,6 @@
 class ConditionsController < ApplicationController
-  authorize_resource :class => false
+  authorize_resource :class => false # Cancancan authorisation to block non-admin from accessing admin functionalities
   before_action :set_condition, only: [:edit, :update, :show, :destroy]
-  
-  def index
-    @conditions = Condition.all
-  end
 
   def create
     @condition = Condition.create(conditions_params)

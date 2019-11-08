@@ -1,4 +1,4 @@
 class Condition < ApplicationRecord
-  validates :status, presence: true
+  validates :status, uniqueness: true, presence: true
   has_many :listings
 end

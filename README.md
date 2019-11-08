@@ -74,15 +74,21 @@ It focuses on quality or rarity of the product over quantity. As it only allows 
 ## 3.3 Model Relationships
 
 Listings belongs to User, Condition and Category
+
 Condition has many listings
+
 Category has many listings
+
 Users has many listings
 
 Comments belong to Listings
+
 Listing has many comments
 
 Purchase_history belongs to listings and users
+
 Listings has many purchase_history
+
 Users has many purchase_history
 
 ## 4.2 ERD Design and interaction
