@@ -173,7 +173,8 @@ Extract from Application Schema
 
 ````ruby
 
-ActiveRecord::Schema.define(version: 2019_11_07_051215) do
+
+ActiveRecord::Schema.define(version: 2019_11_09_071414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -200,13 +201,13 @@ ActiveRecord::Schema.define(version: 2019_11_07_051215) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text "body"
+    t.text "body", null: false
     t.bigint "user_id"
     t.bigint "listing_id"
     t.datetime "created_at", null: false
@@ -216,16 +217,16 @@ ActiveRecord::Schema.define(version: 2019_11_07_051215) do
   end
 
   create_table "conditions", force: :cascade do |t|
-    t.string "status"
+    t.string "status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "listings", force: :cascade do |t|
-    t.string "title"
-    t.date "posted_date"
+    t.string "title", null: false
+    t.date "posted_date", null: false
     t.integer "sold", default: 0
-    t.text "description"
+    t.text "description", null: false
     t.bigint "condition_id"
     t.bigint "category_id"
     t.datetime "created_at", null: false
