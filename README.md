@@ -311,6 +311,9 @@ Create Listings Page
 
 ![Create listing](./resources/create_listing.png)
 
+Sign Up Page
+![sign up page](./resources/SignUp.png)
+
 ## 6.3 Planning
 Trello was used as the planning tool to document and check progress of the application. The process for keeping track of the tasks was putting them into individual cards on trello. Cards are lined up in the backlog based on the importance of the task. They are moved to 'Doing' when they're being worked on and finally moved to 'Done' once the task is completed.
 
