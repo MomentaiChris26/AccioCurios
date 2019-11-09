@@ -24,7 +24,7 @@ The functions and features of AccioCurios include:
 - There are admin functions that allows an administrator to oversee and maintain the website, including deleting or modifying the users account, or their listings.
 
 ### Sitemap
-![AccioCurios Sitemap](./resources/sitemap.JPG)
+![AccioCurios Sitemap](./resources/sitemap.jpg)
 
 ### Screenshot
 
