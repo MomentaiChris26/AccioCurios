@@ -4,7 +4,8 @@
       <th scope="col">ID</th>
       <th scope="col">Username</th>
       <th scope="col">Email</th>
-      <th scope="col"></th>
+      <th scope="col">Account Deleted Date</th>
+      <th scope="col">Edit User</th>
     </tr>
   </thead>
   <tbody>
@@ -13,6 +14,12 @@
     <td><%= user.id %></td>
     <td><%= user.username %></td>
     <td><%= user.email %></td>
+    <% if user.deleted_at.nil? == false %>
+      <td><%= user.deleted_at %></td>
+      <% else %>
+      <td></td>
+    <% end %>
+    
     <td><%= link_to 'Edit User', user_edit_path(user) %></td>
   </tr>
   <% end %>
