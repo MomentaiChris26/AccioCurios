@@ -2,7 +2,7 @@
 
 ## Introduction
 
-AccioCurios is a marketplace for buying and selling collectibles. The goal of AccioCurios is allow buyers and sellers to sell those objects to other users.
+AccioCurios is a marketplace for buying and selling collectibles. The goal of AccioCurios is to have a dedicated marketplace for users to either buy or sell their collectibles such as toys, cards, games, etc to other users through a secure platform.  
 
 ## Links
 
@@ -11,17 +11,17 @@ AccioCurios is a marketplace for buying and selling collectibles. The goal of Ac
 [Github Link](https://github.com/MomentaiChris26/AccioCurios)
 
 ### Purpose
-The purpose of AccioCurios is to provide a dedicated marketplace for users to buy and sell collectibles through a safe and secure online platform. 
+The purpose of AccioCurios is to provide a dedicated marketplace for users to buy and sell collectibles through a safe and secure online platform.
 
 ### Functionality/Features
 The functions and features of AccioCurios include:
 
-- Ability for Users to create an account, where they can buy and sell collectibles
+- Ability for Users to create an account, where they can buy and sell collectibles.
 - Listings can be created, modified or deleted by a user. They can also upload an image to accompany the listing.
-- Users can view all listings available in the market place and users can purchase collectibles.
+- Users can view all listings available in the marketplace and users can purchase collectibles.
 - They can use stripe to make a secure payment.
-- All users have a dashboard where their listings can be modified or edited, see their purchases and see their sold listings.
-- There are admin functions that allows an administrator to oversee and maintain the website, including deleting or modifying the users account, or their listings.
+- Users have a dashboard where they can see their listings, modified or edited them, see their purchases or see which of their listings have been sold.
+- There is an admin function that allows an administrator to oversee and maintain the website, including deleting or modifying users account or listings.
 
 ### Sitemap
 ![AccioCurios Sitemap](./resources/sitemap.jpg)
@@ -51,7 +51,7 @@ Admin Dashboard Page
 
 ### Target Audience
 
-AccioCurios is designed for people who are seeking to purchase or sell different types of collectibles on a safe and secure website. This can include the general public, collectors or even businesses that plan to sell new collectibles.
+AccioCurios is designed for people who are seeking to purchase or sell different types of collectibles on a safe and secure website. This can include the general public, collectors or even businesses.
 
 ### Tech Stack
 - HTML/CSS
@@ -61,16 +61,15 @@ AccioCurios is designed for people who are seeking to purchase or sell different
 - AWS S3 for file cloud storage
 - Stripe API for online payments
 
-
 ## 1.2 High-Level Components (abstractions)
 
 ### Active Record
-Is a layer in the rails application that allows the creation, retention and use of objects inside a database.
+Active Records is a rails layer in the application that allows the creation, retention and use of objects inside a database.
 
-All users data, listings data is stored into an Postgresql database. The information is stored into the database via forms inside the rails application. It can also be retrieved using simple queries inside the application, such as `Listings.all` that can be used to display data into the view.
+All inputted data is stored into an Postgresql database. The information is stored into the database via forms or methods inside the rails application. The application can interact with the database by retrieving data and allowing it to intereactive with objects in rails. For example, the method `Listings.all` retrieves all listings from the Listings table in the database and the view portion of rails allows it to display aspects of those listings including the title or price.
 
 ### Active Storage
-Active Storage is a layer in the rails that allows the application to upload files into cloud storage. Active Storage can interact with Active Records, where it attach images or files to an object in the Rails application.
+Active Storage is a layer in the rails that allows the application to upload files or images into a cloud storage such as Amazon or Google. Active Storage can interact with Active Records, where it attach images or files to an object in the Rails application. It can also store images through Active Records, where a user may update it through a form which gets saved into the database.
 
 In AccioCurios, Active Storage allows a user to upload a screenshot or picture of the product they wish to sell. This is linked to AWS S3 cloud storage, where it can be retrieved and viewed in the listings pages.
 
@@ -93,7 +92,9 @@ Highest level of permission is an admin role. They're able to modify or delete u
 You can find out more detail about Cancancan by going to the following link. [Cancancan Github](https://github.com/CanCanCommunity/cancancan)
 
 ### Ransack
-Ransack is a rails library that allows the application to have search features. It does this by querying the database using parameters relevant the listing. In regards to this application, it looks up the title of listing and uses a 'where' clause query on the database with the input from the user.
+Ransack is a rails library that allows the application to have search features. It does this by querying the database using parameters provided in the search bar. 
+
+In regards to this application, it looks up the title of listing and uses a sql 'where' clause on the database with the input from the user on either the home page or listings page. 
 
 Ransack is used because it provides the ability for a user to search the title of a listing and return the results to make it easier for users to look for specific listings in the database if they're looking for something specific.
 
@@ -114,51 +115,57 @@ The reason for using Stripe over a custom payment implementation into the applic
 ## 3.1 Identify the problem you’re trying to solve
 AccioCurios seeks to solve the problem of having a dedicated marketplace for people to buy or sell various collectibles.
 
-In today's market, there are plenty of big market places where people can buy, trade or sell collectibles, such as Ebay, Amazon, or Gumtree. However, these are large marketplaces that contain not only collectibles, but new items, or different type of products that aren't necessarily collectibles.
+In today's market, there are plenty of big marketplaces where people can buy, trade or sell collectibles, such as Ebay, Amazon, or Gumtree. However, these are large marketplaces that contain not only collectibles, but new items, or different type of products that aren't necessarily collectibles.
 
 A collector may only be seeking specific collectibles and may find too many products that may or not be related to what they're looking for. AccioCurios solves this issue by providing the collectors a dedicated marketplace where they can sell and buy their collections.
 
-It focuses on quality or rarity of the product over quantity. As it only allows a user to buy a particular product from its marketplace. AccioCurios target audience would be individuals rather than businesses seeking to sell their products. Additionally, it offers a dashboard for users to check their listings and purchases they've made, making it cleaner and easier to keep track of their items.
+It focuses on quality or rarity of the product over quantity. As it only allows a user to buy a particular product from its marketplace. AccioCurios target audience would be individuals rather than businesses seeking to sell their products. However, it doesn't prevent a business from selling their products on the site as they might also sell collectibles direct to collectors. Additionally, it offers a dashboard for users to check their listings and purchases they've made, making it cleaner and easier to keep track of their items.
 
 ## 3.3 Model Relationships
-Listings is considered the main table in which the other tables in the database revolve around. The relationships in Active Records are as followed for the listings table.
+Listings is considered the main table in which the other tables in the database revolve around. Therefore the relationships for Rails Active Records are discussed in detail below and the reason for the existence of that relationship.
 
-When the user is creating a new listing, it lets the database know through Active Records that it plans to create a new listing and assigns it a new id. The method in listings controller also assigns the attribute user_id to the current user. The relationship here is that the listing belongs to a user. Conditions and Categories will have many listings. Conditions and categories are separated into their own tables in the database. The purpose of this is to normalise the data and provide the opportunity for future filtering in the application, where the user can do a filter search using the condition or the category of a specific listing. 
-
-However, to allow a user to add a new category or condition, the inputs needed to be nested into the create listings form. This is achieved through adding a relationship to the model using the `accepts_nested_attributes_for` attribute. This allowed the user to add a new condition or category using the listing form and store them into their respective tables in the database. Additionally, the form had to be able to retrieve pre-existing conditions and categories for a user to select. This is where the relationship between listing, conditions and categories, where the database determines the association between the tables and can allow the form display those items.  
+The first relationship discussed is the listings.
 
 - Listings belongs to User, Condition and Category
 - Condition has many listings
 - Category has many listings
 - Users has many listings
 
-The comments belong listings. The purpose of doing this is to ensure that any comments made is in reference to a listing. The comment section is designed for users to interact with one another regarding the listing. This uses the `listing_id` parameters on the show page which will perform two functions in relation to the comments. Firstly, the comment table in the database contains `listing_id` attribute which is accessed when in the listings show page using the listing id provided by the URL link. This allows the listing controller to retrieve the comments specifically related to the listing in the show page. The second function is the ability for a user to type a comment onto the show page and assign a `user_id` to the specific comment. This links the the user to the comment and can display the user's name by querying the user table and picking up the username using the `user_id` on the creation of the comment. The purpose of this is allow a user to be identified on the comments so they can send inquiries and replies to each other.
+When the user is creating a new listing, it lets the database know through Active Records that it plans to create a new listing and assigns it a new id. The method in listings controller also assigns the attribute user_id to the current user. The relationship here is that the listing belongs to a user. Conditions and Categories will have many listings. Conditions and categories are separated into their own tables in the database. The purpose of this is to normalise the data and provide the opportunity for a future filtering feature in the application, where the user can do a filter search using the condition or the category of a specific listing.
+
+However, to allow a user to add a new category or condition, the inputs needed to be nested into the create listings form. This is achieved through adding a relationship to the model using the `accepts_nested_attributes_for` attribute. This allowed the user to add a new condition or category using the listing form and store them into their respective tables in the database. Additionally, the form had to be able to retrieve pre-existing conditions and categories for a user to select. This is where the relationship between listing, conditions and categories, where the database determines the association between the tables and can allow the form display those items.  
+
+The comments belong listings. 
 
 - Comments belong to Listings and users
 - Listing has many comments
 - Users has many comments
 
-Purchase history table belongs to listings and users. The purpose of this relationship is that it acts a type of join table in which the listing is assigned to a user when they make a purchase. Its achieves this when a user makes a purchase, it assigns the attribute `buyer_id` of the Purchase History table in the database to the current user's id and the listing id in the Listings table to the Listing_id attribute in the Purchase History. The purchase history can be viewed in a user's dashboard since dashboard queries purchase history table to match up the buyer's id to the current user's id.
+The purpose of doing this is to ensure that any comments made is in reference to a listing. The comment section is designed for users to interact with one another regarding the listing. This uses the `listing_id` parameters on the show page which will perform two functions in relation to the comments. Firstly, the comment table in the database contains `listing_id` attribute which is accessed when in the listings show page using the listing id provided by the URL link. This allows the listing controller to retrieve the comments specifically related to the listing in the show page. The second function is the ability for a user to type a comment onto the show page and assign a `user_id` to the specific comment. This links the the user to the comment and can display the user's name by querying the user table and picking up the username using the `user_id` on the creation of the comment. The purpose of this is allow a user to be identified on the comments so they can send inquiries and replies to each other.
+
+Purchase history table belongs to listings and users.
 
 - Purchase_history belongs to listings and users
 - Listings has many purchase_history
 - Users has many purchase_history
 
+The purpose of this relationship is that it acts a type of join table in which the listing is assigned to a user when they make a purchase. Its does this when a user makes a purchase, it assigns the attribute `buyer_id` of the Purchase History table in the database to the current user's id and the listing id in the Listings table to the Listing_id attribute in the Purchase History. The purchase history can be viewed in a user's dashboard since dashboard queries purchase history table to match up the buyer's id to the current user's id.
+
 ## 4.2 ERD Design and interaction
+
+![AccioCurios ERD](./resources/erd.jpg)
 
 The interaction in the ERD is based on a simple design where the relationships revolve around the listings table. In regards to the ERD, the interaction occurs around the Listings table, which is the application's foundation that is built around.
 
-Both Conditions and Categories table in the ERD were separated from Listings for two purposes. First, it was done to normalise the data in the database and secondly it provides an opportunity to implement a filter option in application, where listings with specific conditions or categories can be retrieved. Both tables contain one field and a primary key, and their only relationship is to the listings table.
+Both Conditions and Categories table in the ERD were separated from Listings for two purposes. Both tables contain one field and a primary key, and their only relationship is to the listings table.
 
-Within the Listings table, contains attributes relevant for a complete listing. The listings table contains three foreign keys. Conditions and Categories are separated from Listings to normalise the data. The listing table will store the Condition and Category ids and will reference them when the listing is created. The third foreign key ensures that the listing belongs to the user that created it. The comments table has two foreign keys and a text body. The Listing table also has relationships to comments and purchase histories tables.
+Listing table in ERD contains attributes relevant for a complete listing and three foreign keys to other tables in the ERD. Conditions and Categories are separated from Listings to normalise the data. The listing table will store the Condition and Category ids and will reference them when the listing is created. The third foreign key ensures that the listing belongs to the user that created it. The Listing table also has relationships to comments and purchase histories tables.
 
 The comments table has two foreign keys and a text body. Firstly, it contains a foreign key to the listings table. This ensures it only relates to a specific listing rather than just any listing. The second foreign key is the user_id. The purpose of having the reference to the user table is to assign the comment made on that specific listing to a particular user in the database. This means that a listing can have multiple comments and assigns different comments under that listing to different users, which allows the ability for users to have discussions or send queries in relation to the listing.
 
-The purchase histories table is a type of join table that is used to display when a user has purchase the product. The Purchase Histories table has two foreign keys. First, its assigned to a particular listing, and assigns the an id to the `buyer_id` with an id from the user's table. The purpose of this table is to record the information relating to the purchase of a particular listing to a particular user in the user table.
+The purchase histories table is a type of join table that is used to display when a user has purchase a listing. The Purchase Histories table has two foreign keys. First, its assigned to a purchased listing using the id from the listing table and assigns the the user's id who purchasd it to the `buyer_id`. The purpose of this table is to record the information relating to the purchase of a particular listing to a particular user in the user table.
 
-Finally, the last table is the user table, which contains information relating to user accounts within the database. User table has relations with three separate tables within the database. Firstly, a user will be able to have one or many listings. Next, the user should be able to make multiple comments to different listings. And finally, the user can have more than one purchase history, as they should be able to see all the purchases they've made.
-
-![AccioCurios ERD](./resources/erd.jpg)
+Finally, the last table is the user table, which contains information relating to user accounts within the database. User table has relations with three separate tables within the database. Firstly, a user will be able to have one or many listings. Next, the user should be able to make multiple comments to different listings. And finally, the user can have one or more purchase histories.
 
 ## 4.3 Schema
 
