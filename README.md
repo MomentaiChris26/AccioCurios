@@ -121,24 +121,28 @@ A collector may only be seeking specific collectibles and may find too many prod
 It focuses on quality or rarity of the product over quantity. As it only allows a user to buy a particular product from its marketplace. AccioCurios target audience would be individuals rather than businesses seeking to sell their products. Additionally, it offers a dashboard for users to check their listings and purchases they've made, making it cleaner and easier to keep track of their items.
 
 ## 3.3 Model Relationships
+Listings is considered the main table in which the other tables in the database revolve around. The relationships in Active Records are as followed for the listings table.
 
-Listings belongs to User, Condition and Category
+When the user is creating a new listing, it lets the database know through Active Records that it plans to create a new listing and assigns it a new id. The method in listings controller also assigns the attribute user_id to the current user. The relationship here is that the listing belongs to a user. Conditions and Categories will have many listings. Conditions and categories are separated into their own tables in the database. The purpose of this is to normalise the data and provide the opportunity for future filtering in the application, where the user can do a filter search using the condition or the category of a specific listing. 
 
-Condition has many listings
+However, to allow a user to add a new category or condition, the inputs needed to be nested into the create listings form. This is achieved through adding a relationship to the model using the `accepts_nested_attributes_for` attribute. This allowed the user to add a new condition or category using the listing form and store them into their respective tables in the database. Additionally, the form had to be able to retrieve pre-existing conditions and categories for a user to select. This is where the relationship between listing, conditions and categories, where the database determines the association between the tables and can allow the form display those items.  
 
-Category has many listings
+- Listings belongs to User, Condition and Category
+- Condition has many listings
+- Category has many listings
+- Users has many listings
 
-Users has many listings
+The comments belong listings. The purpose of doing this is to ensure that any comments made is in reference to a listing. The comment section is designed for users to interact with one another regarding the listing. This uses the `listing_id` parameters on the show page which will perform two functions in relation to the comments. Firstly, the comment table in the database contains `listing_id` attribute which is accessed when in the listings show page using the listing id provided by the URL link. This allows the listing controller to retrieve the comments specifically related to the listing in the show page. The second function is the ability for a user to type a comment onto the show page and assign a `user_id` to the specific comment. This links the the user to the comment and can display the user's name by querying the user table and picking up the username using the `user_id` on the creation of the comment. The purpose of this is allow a user to be identified on the comments so they can send inquiries and replies to each other.
 
-Comments belong to Listings
+- Comments belong to Listings and users
+- Listing has many comments
+- Users has many comments
 
-Listing has many comments
+Purchase history table belongs to listings and users. The purpose of this relationship is that it acts a type of join table in which the listing is assigned to a user when they make a purchase. Its achieves this when a user makes a purchase, it assigns the attribute `buyer_id` of the Purchase History table in the database to the current user's id and the listing id in the Listings table to the Listing_id attribute in the Purchase History. The purchase history can be viewed in a user's dashboard since dashboard queries purchase history table to match up the buyer's id to the current user's id.
 
-Purchase_history belongs to listings and users
-
-Listings has many purchase_history
-
-Users has many purchase_history
+- Purchase_history belongs to listings and users
+- Listings has many purchase_history
+- Users has many purchase_history
 
 ## 4.2 ERD Design and interaction
 
