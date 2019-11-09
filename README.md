@@ -4,9 +4,7 @@
 
 AccioCurios is a marketplace for buying and selling collectibles. The goal of AccioCurios is allow buyers and sellers to sell those objects to other users.
 
-## Admin Test Account Login
-email: admin@test.com
-password: admin12345
+
 
 ## Links
 
