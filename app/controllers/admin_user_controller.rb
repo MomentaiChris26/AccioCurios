@@ -26,7 +26,7 @@ class AdminUserController < ApplicationController
  end
 
   def destroy
-    if @user.destroy # Provides a method that allows the admin to destroy the user
+    if @user.update(deleted_at: Time.current) # Provides a method that allows the admin to destroy the user
       flash[:alert] = "Successfully deleted User."
       redirect_to admin_path
     end
