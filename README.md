@@ -4,26 +4,73 @@
 
 AccioCurios is a marketplace for buying and selling collectibles. The goal of AccioCurios is allow buyers and sellers to sell those objects to other users.
 
-
-
 ## Links
 
 [AccioCurios Site Link](https://secret-sea-86315.herokuapp.com/)
 
 [Github Link](https://github.com/MomentaiChris26/AccioCurios)
 
-## Sitemap
-![AccioCurios Sitemap](./resources/sitemap.jpg)
+### Purpose
+The purpose of AccioCurios is to provide a dedicated marketplace for users to buy and sell collectibles through a safe and secure online platform. 
+
+### Functionality/Features
+The functions and features of AccioCurios include:
+
+- Ability for Users to create an account, where they can buy and sell collectibles
+- Listings can be created, modified or deleted by a user. They can also upload an image to accompany the listing.
+- Users can view all listings available in the market place and users can purchase collectibles.
+- They can use stripe to make a secure payment.
+- All users have a dashboard where their listings can be modified or edited, see their purchases and see their sold listings.
+- There are admin functions that allows an administrator to oversee and maintain the website, including deleting or modifying the users account, or their listings.
+
+### Sitemap
+![AccioCurios Sitemap](./resources/sitemap.JPG)
+
+### Screenshot
+
+Home Page
+![Home Page](./resources/homepage.JPG)
+
+Sign In Page
+![Sign In Page](./resources/loginpage.JPG)
+
+Sign Up Page
+![Sign Up Page](./resources/signuppage.JPG)
+
+Browse Listings Page
+![Browse Listings Page](./resources/browselisting.JPG)
+
+Show Listings Page
+![Show Listing Page](./resources/showpage.JPG)
+
+User Dashboard Page
+![User Dashboard](./resources/dashboard.JPG)
+
+Admin Dashboard Page
+![Admin Dashboard Page](./resources/admindashboard.JPG)
+
+### Target Audience
+
+AccioCurios is designed for people who are seeking to purchase or sell different types of collectibles on a safe and secure website. This can include the general public, collectors or even businesses that plan to sell new collectibles.
+
+### Tech Stack
+- HTML/CSS
+- Bootstrap for CSS styling
+- Heroku for website deployment
+- VS Studio for code editing and development
+- AWS S3 for file cloud storage
+- Stripe API for online payments
+
 
 ## 1.2 High-Level Components (abstractions)
 
 ### Active Record
-Is a layer in the rails application that allows the creation, retention and use of objects inside a database. 
+Is a layer in the rails application that allows the creation, retention and use of objects inside a database.
 
 All users data, listings data is stored into an Postgresql database. The information is stored into the database via forms inside the rails application. It can also be retrieved using simple queries inside the application, such as `Listings.all` that can be used to display data into the view.
 
 ### Active Storage
-Is the layer of the rails application that's in charge of facilitates the ability for the application to upload files into a cloud storage from the application and can be queried into the application so a user can interact with.
+Active Storage is a layer in the rails that allows the application to upload files into cloud storage. Active Storage can interact with Active Records, where it attach images or files to an object in the Rails application.
 
 In AccioCurios, Active Storage allows a user to upload a screenshot or picture of the product they wish to sell. This is linked to AWS S3 cloud storage, where it can be retrieved and viewed in the listings pages.
 
@@ -55,7 +102,7 @@ You can find out more detail about Ransack by going to the following link. [Rans
 ## 1.3 Third Party Services
 
 ### Bootstrap
-Bootstrap was used for css styling in the application. This allowed the implementation of styling to the website. The elements are provided from an external CDN provided by [Stack Path]("https://www.stackpath.com/"). The styles are taken from a code extract on [Bootstrap]("https://getbootstrap.com/") and modified to fit the pages styling requirement.
+Bootstrap was used for CSS styling in the application. This allowed the implementation of styling to the website. The elements are provided from an external CDN provided by [Stack Path]("https://www.stackpath.com/"). The styles are taken from a code extract on [Bootstrap]("https://getbootstrap.com/") and modified to fit the pages styling requirement.
 
 ### Stripe
 Stripe is a payment platform that allows users to purchase other user's listings. It links the user to an external page using the stripe API, where the user can enter their credit card details to complete the purchase. It's designed to allow safe transaction between buyer and seller with maximum security when processing a buyer's payment.
@@ -71,7 +118,7 @@ In today's market, there are plenty of big market places where people can buy, t
 
 A collector may only be seeking specific collectibles and may find too many products that may or not be related to what they're looking for. AccioCurios solves this issue by providing the collectors a dedicated marketplace where they can sell and buy their collections.
 
-It focuses on quality or rarity of the product over quantity. As it only allows a user buy a particular product from its marketplace. AccioCurios target audience would be individuals rather than businesses seeking to sell their products. Additionally, it offers a dashboard for users to check their listings and purchases they've made, making it cleaner and easier to keep track of their items.
+It focuses on quality or rarity of the product over quantity. As it only allows a user to buy a particular product from its marketplace. AccioCurios target audience would be individuals rather than businesses seeking to sell their products. Additionally, it offers a dashboard for users to check their listings and purchases they've made, making it cleaner and easier to keep track of their items.
 
 ## 3.3 Model Relationships
 
@@ -95,11 +142,11 @@ Users has many purchase_history
 
 ## 4.2 ERD Design and interaction
 
-The interaction in the ERD is based on a simple design where the relationships revolve around the listings table. In regards to the ERD, the interaction occurs around the Listings table, which is the application's foundation is built around.
+The interaction in the ERD is based on a simple design where the relationships revolve around the listings table. In regards to the ERD, the interaction occurs around the Listings table, which is the application's foundation that is built around.
 
 Both Conditions and Categories table in the ERD were separated from Listings for two purposes. First, it was done to normalise the data in the database and secondly it provides an opportunity to implement a filter option in application, where listings with specific conditions or categories can be retrieved. Both tables contain one field and a primary key, and their only relationship is to the listings table.
 
-Within the Listings table, contains attributes relevant for a complete listing. The listings table contains three foreign keys. Conditions and Categories are separated from Listings to normalise the data. The listing table will store the Condition and Category ids and will reference them when the listing is created. The third foreign key ensures that the listing belong to the user that created it. The comments table has two foreign keys and a text body. The Listing table also has relationships to comments and purchase histories tables.
+Within the Listings table, contains attributes relevant for a complete listing. The listings table contains three foreign keys. Conditions and Categories are separated from Listings to normalise the data. The listing table will store the Condition and Category ids and will reference them when the listing is created. The third foreign key ensures that the listing belongs to the user that created it. The comments table has two foreign keys and a text body. The Listing table also has relationships to comments and purchase histories tables.
 
 The comments table has two foreign keys and a text body. Firstly, it contains a foreign key to the listings table. This ensures it only relates to a specific listing rather than just any listing. The second foreign key is the user_id. The purpose of having the reference to the user table is to assign the comment made on that specific listing to a particular user in the database. This means that a listing can have multiple comments and assigns different comments under that listing to different users, which allows the ability for users to have discussions or send queries in relation to the listing.
 
@@ -218,7 +265,7 @@ end
 
 ## 6.1 User Stories
 
-Since AccioCurios is a marketplace, the needs to be addressed for the marketplace to function effectively and efficient comes down to how functions that need to accessed and the level of privileges allowed for the different types of users. The most important need, is the ability for a user to create, read, update or destroy listings and make purchases from other users.  
+Since AccioCurios is a marketplace, the needs to be addressed for the marketplace to function effectively and efficiently comes down to how functions are accessed and the level of privileges allowed for the different types of users. The most important need, is the ability for a user to create, read, update or destroy listings and make purchases from other users.  
 
 There are three different levels of users that will be using the application. Each level has a specific permission and depending on the level, can prevent or allow access to certain functionality in the application. 
 
@@ -231,7 +278,7 @@ The last level of user is an admin. The admin has the ability to view all pages,
 
 ## 6.2 Wireframe
 
-Below are the wireframe for the design of the website.
+Below are the wireframes for the design of the website.
 
 Home Page
 ![Home Page](./resources/home_page.png)
@@ -253,7 +300,7 @@ Create Listings Page
 ![Create listing](./resources/create_listing.png)
 
 ## 6.3 Planning
-Trello was used as the planning tool to document and check progress of the application. The process for keeping track of the tasks was putting them into individual cards on trello. Cards are lined up in the backlog based on the importance of the task. They are moved to 'Doing' when they're being worked on and finally moved to 'Done'. once the task is completed.
+Trello was used as the planning tool to document and check progress of the application. The process for keeping track of the tasks was putting them into individual cards on trello. Cards are lined up in the backlog based on the importance of the task. They are moved to 'Doing' when they're being worked on and finally moved to 'Done' once the task is completed.
 
 ![Trello 4](./resources/trello4.JPG)
 
