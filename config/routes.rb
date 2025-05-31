@@ -46,7 +46,12 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :listings, only: [:index, :show]
-        resources :categories, only: [:index]
+      resources :categories, only: [:index]
+
+      # Signup
+      post 'signup', to: 'registrations#create'
+      post 'login', to: 'sessions#create'
+      delete 'logout', to: 'sessions#destroy'
     end
   end
 
