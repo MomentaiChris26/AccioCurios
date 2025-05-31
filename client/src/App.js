@@ -8,6 +8,7 @@ import SignUpForm from './components/auth/SignUpForm';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useAuth } from './context/AuthContext'; // Import useAuth
 
+
 function Home() {
   return (
     <div>
@@ -16,6 +17,7 @@ function Home() {
     </div>
   );
 }
+
 
 // Example Dashboard component (can be inline or a new file)
 function Dashboard() {
@@ -30,8 +32,6 @@ function Dashboard() {
 }
 
 function App() {
-  const auth = useAuth(); // Get auth context
-
   return (
     <Router>
       <div>
