@@ -43,6 +43,17 @@ Rails.application.routes.draw do
   post "/payments/webhook", to: "payments#webhook"
 
 
+  namespace :api do
+    namespace :v1 do
+      resources :listings, only: [:index, :show]
+      resources :categories, only: [:index]
+
+      # Signup
+      post 'signup', to: 'registrations#create'
+      post 'login', to: 'sessions#create'
+      delete 'logout', to: 'sessions#destroy'
+    end
+  end
 
   
 end
