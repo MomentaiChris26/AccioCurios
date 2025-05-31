@@ -7,7 +7,9 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useAuth } from './context/AuthContext'; // Import useAuth
-
+import CreateListingForm from './components/listings/CreateListingForm';
+import EditListingForm from './components/listings/EditListingForm';
+import ListingShow from './components/listings/ListingShow';
 
 function Home() {
   return (
@@ -17,7 +19,6 @@ function Home() {
     </div>
   );
 }
-
 
 // Example Dashboard component (can be inline or a new file)
 function Dashboard() {
@@ -32,6 +33,8 @@ function Dashboard() {
 }
 
 function App() {
+  const auth = useAuth(); // Get auth context
+
   return (
     <Router>
       <div>
@@ -40,6 +43,7 @@ function App() {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/listings">Listings</Link></li>
             <li><Link to="/categories">Categories</Link></li>
+            {auth.isAuthenticated && <li><Link to="/listings/new">Create Listing</Link></li>}
             {!auth.isAuthenticated && <li><Link to="/login">Login</Link></li>}
             {!auth.isAuthenticated && <li><Link to="/signup">Sign Up</Link></li>}
             {auth.isAuthenticated && <li><Link to="/dashboard">Dashboard</Link></li>}
@@ -57,9 +61,12 @@ function App() {
           <Route path="/categories" element={<CategoriesList />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<SignUpForm />} />
+          <Route path="/listings/:id" element={<ListingShow />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
-            {/* Add other protected routes here, e.g., a page to create listings */}
+            <Route path="/listings/new" element={<CreateListingForm />} />
+            <Route path="/listings/:id/edit" element={<EditListingForm />} />
+            {/* Add other protected routes here */}
           </Route>
         </Routes>
       </div>

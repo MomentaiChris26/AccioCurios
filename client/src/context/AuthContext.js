@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'axios';
 import axios from 'axios';
 
 const AuthContext = createContext(null);
@@ -10,36 +10,59 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
-    const storedUser = localStorage.getItem('user');
-    if (storedToken && storedUser) {
-      try {
-        const parsedUser = JSON.parse(storedUser);
-        // Here, you might want to verify the token with the backend if it's a short-lived app session
-        // For this simplified token, we'll trust it if it exists and hasn't expired based on its own payload (if we could decode it client-side)
-        // Or better, make a call to a '/api/v1/me' endpoint to validate token and get user data
-        setToken(storedToken);
-        setUser(parsedUser);
+    // No need to parse storedUser here anymore, /me will provide fresh data
+
+    if (storedToken) {
+      axios.get('/api/v1/me', {
+        headers: {
+          'Authorization': `Bearer ${storedToken}`
+        }
+      })
+      .then(response => {
+        setUser(response.data); // Set user with fresh data from API
+        setToken(storedToken); // Token is still valid
         axios.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
-      } catch (e) {
-        console.error("Error parsing stored user data", e);
+      })
+      .catch(error => {
+        console.error("Token validation failed or /me call failed:", error);
         localStorage.removeItem('token');
-        localStorage.removeItem('user');
-      }
+        localStorage.removeItem('user'); // Clear any stale user data
+        setToken(null);
+        setUser(null);
+        delete axios.defaults.headers.common['Authorization'];
+        // Optionally, redirect to login if the error indicates an auth failure (e.g., 401)
+        // This might require access to navigate function or a global event.
+        // For now, clearing state will make ProtectedRoute redirect.
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+    } else {
+      setLoading(false); // No token, not logged in
     }
-    setLoading(false);
-  }, []);
+  }, []); // Empty dependency array means this runs once on mount
 
   const login = (newToken, userData) => {
     localStorage.setItem('token', newToken);
+    // Storing user from login response is fine for immediate UI update,
+    // but /me call on reload will be the source of truth.
     localStorage.setItem('user', JSON.stringify(userData));
     setToken(newToken);
     setUser(userData);
     axios.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
   };
 
-  const logout = () => {
-    // Call API logout endpoint (optional, as token invalidation is client-side for simple tokens)
-    // axios.delete('/api/v1/logout').catch(err => console.error("Logout API call failed", err));
+  const logout = async () => { // Make logout async if you want to await API call
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+        try {
+            // Optional: Inform backend of logout.
+            // await axios.delete('/api/v1/logout'); // Header already set
+        } catch (error) {
+            console.error("Logout API call failed", error);
+            // Still proceed with client-side logout
+        }
+    }
 
     localStorage.removeItem('token');
     localStorage.removeItem('user');
@@ -49,8 +72,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout, loading, isAuthenticated: !!token }}>
-      {children}
+    <AuthContext.Provider value={{ user, token, login, logout, loading, isAuthenticated: !!token && !!user }}>
+      {!loading && children} {/* Render children only after loading is complete */}
     </AuthContext.Provider>
   );
 };

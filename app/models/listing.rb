@@ -23,4 +23,17 @@ class Listing < ApplicationRecord
   
   
 
+  def image_url # Or picture_url if you prefer to match the attachment name
+    if picture.attached?
+      # Ensure Rails.application.routes.url_helpers is available
+      # and default_url_options are set for the environment (e.g., in development.rb)
+      # Example: config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+      begin
+        Rails.application.routes.url_helpers.rails_blob_url(picture, only_path: false) # false for full URL
+      rescue ArgumentError => e # Catches if default_url_options host is missing
+        Rails.logger.error "Failed to generate image URL for Listing #{id}: #{e.message}. Check default_url_options."
+        nil # Or return a placeholder / path if full URL generation fails
+      end
+    end
+  end
 end
